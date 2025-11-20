@@ -1,0 +1,19 @@
+@import url(../mainCss/animation.css);
+.show {
+  display: none;
+  font-weight: bold;
+  padding: 20px;
+  width: 50vw;
+  height: 50vh;
+  background-color: #000;
+  margin-top: 50px;
+}
+.content {
+  display: flex;
+}
+.react {
+  color: #00d1ff;
+}
+.errMess {
+  color: red;
+}

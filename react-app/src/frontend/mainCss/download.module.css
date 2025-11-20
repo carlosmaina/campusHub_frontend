@@ -1,0 +1,55 @@
+@import url(./animation.css);
+.download {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 1s ease-in;
+  position: absolute;
+  top: 150px;
+  width: 100vw;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+/* for display option */
+.inActive {
+  display: none;
+}
+/* btns */
+.search {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  width: 70px;
+  height: 40px;
+}
+/* active link */
+.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000; /* make text readable */
+}
+.search:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.btns {
+  justify-content: center;
+  padding: 20px 0;
+  width: 50vw;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 480px) {
+  .btns {
+    width: 80vw;
+  }
+}

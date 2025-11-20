@@ -1,0 +1,62 @@
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  padding: 20px;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card {
+  display: flex;
+  gap: 15px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  background: #e0f2fe;
+  color: #0284c7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.info h3 {
+  font-size: 1.1rem;
+  color: #0f172a;
+  margin: 0;
+}
+
+.info p {
+  margin: 3px 0;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.time {
+  font-size: 0.8rem;
+  color: #64748b;
+}

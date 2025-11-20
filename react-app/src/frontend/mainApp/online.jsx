@@ -100,7 +100,6 @@ function Search({ toggle }) {
       resetView(false);
       setResults(data);
     } catch (err) {
-      console.log(err);
       setErrorMsg("Something went wrong. Try again.");
     }
   }

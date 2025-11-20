@@ -83,7 +83,7 @@ function Search({ toggle }) {
     setErrorMsg("");
 
     try {
-      const res = await fetch("https://campushub-pmja.onrender.com/api", {
+      const res = await fetch("https://campushub-mq9h.onrender.com/api", {
         method: "POST",
         headers: { "content-Type": "application/json" },
         body: JSON.stringify({ val: query }),
@@ -100,7 +100,6 @@ function Search({ toggle }) {
       resetView(false);
       setResults(data);
     } catch (err) {
-      console.log(err);
       setErrorMsg("Something went wrong. Try again.");
     }
   }

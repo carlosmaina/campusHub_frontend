@@ -42,13 +42,19 @@ function Upload({ state }) {
 
   useEffect(() => {
     const dz = new Dropzone("#file-dropzone", {
-      url: "https://campushub-mq9h.onrender.com/upload", // backend upload endpoint
-      autoProcessQueue: true, // default behavior
+      url: "https://campushub-mq9h.onrender.com/upload",
+      autoProcessQueue: true,
       maxFilesize: 150, // MB
       acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip,.mp4",
       addRemoveLinks: true,
-      maxFiles: 1, // <-- only allow one file
+      maxFiles: 1, // only allow one file
       dictDefaultMessage: "Drag & drop files here or click + to upload",
+    });
+
+    // Replace old file with new one if user drags multiple
+    dz.on("maxfilesexceeded", (file) => {
+      dz.removeAllFiles(); // clear existing file(s)
+      dz.addFile(file); // add the new one
     });
 
     dz.on("addedfile", (file) => {
@@ -57,9 +63,7 @@ function Upload({ state }) {
       setPreviewURL(URL.createObjectURL(file));
     });
 
-    dz.on("removedfile", (file) => {
-      console.log("Your file:", file);
-      // Reset state when file is removed
+    dz.on("removedfile", () => {
       resetFile(none);
       setFileObj(null);
       setPreviewURL(null);
@@ -68,7 +72,7 @@ function Upload({ state }) {
 
     dz.on("success", (file, response) => {
       console.log("Uploaded:", response);
-      vary(); // simulate upload button state
+      vary();
     });
 
     dz.on("error", (file, errorMessage) => {

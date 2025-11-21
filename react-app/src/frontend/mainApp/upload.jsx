@@ -18,7 +18,7 @@ function Upload({ state }) {
   // ---- Modal + fullscreen states ----
   const [showPreview, setShowPreview] = useState(false);
   const [isFull, setIsFull] = useState(false);
-  const iframeRef = useRef(null);
+  // const iframeRef = useRef(null);
 
   function vary() {
     resetBtn("Uploading...");
@@ -40,12 +40,11 @@ function Upload({ state }) {
     setIsFull(false);
   }
 
-  // ---- Initialize Dropzone ----
   useEffect(() => {
     const dz = new Dropzone("#file-dropzone", {
-      url: "https://campushub-mq9h.onrender.com/upload", // backend upload endpoint
+      url: "https://campushub-mq9h.onrender.com", // backend upload endpoint
       maxFilesize: 25, // MB
-      acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip",
+      acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip,.mp4",
       addRemoveLinks: true,
       dictDefaultMessage: "Drag & drop files here or click + to upload",
     });
@@ -54,6 +53,14 @@ function Upload({ state }) {
       resetFile(file.name);
       setFileObj(file);
       setPreviewURL(URL.createObjectURL(file));
+    });
+
+    dz.on("removedfile", (file) => {
+      // Reset state when file is removed
+      resetFile(none);
+      setFileObj(null);
+      setPreviewURL(null);
+      setShowPreview(false);
     });
 
     dz.on("success", (file, response) => {
@@ -65,7 +72,9 @@ function Upload({ state }) {
       console.error("Upload error:", errorMessage);
     });
 
-    return () => dz.destroy();
+    return () => {
+      dz.destroy();
+    };
   }, []);
 
   return (
@@ -125,7 +134,6 @@ function Upload({ state }) {
       </div>
 
       {/* ---- Preview Modal ---- */}
-      {/* ---- Preview Modal ---- */}
       {showPreview && (
         <div
           className={`${uploadCSS.previewOverlay} ${
@@ -150,10 +158,19 @@ function Upload({ state }) {
             {fileObj && fileObj.type === "application/pdf" ? (
               <div className={uploadCSS.mainCont}>
                 <iframe
-                  ref={iframeRef}
                   src={previewURL}
                   title="pdf-preview"
                 ></iframe>
+              </div>
+            ) : fileObj && fileObj.type === "video/mp4" ? (
+              <div className={uploadCSS.mainCont}>
+                <video
+                  src={previewURL}
+                  controls
+                  style={{ width: "100%", borderRadius: "8px" }}
+                >
+                  Your browser does not support the video tag.
+                </video>
               </div>
             ) : (
               fileObj && <p>Preview not available.</p>

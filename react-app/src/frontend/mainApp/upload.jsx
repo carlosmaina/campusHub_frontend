@@ -144,23 +144,24 @@ function Upload({ state }) {
             <div className={uploadCSS.previewHeader}>
               <h3>Preview: {fileName}</h3>
               <div className={uploadCSS.previewBtns}>
-                <button onClick={toggleFullScreen}>
-                  {isFull ? (
-                    <i className="fa-solid fa-down-left-and-up-right-to-center"></i>
-                  ) : (
-                    <i className="fa-solid fa-up-right-and-down-left-from-center"></i>
-                  )}
-                </button>
+                {fileObj.type === "video/mp4" ? (
+                  ""
+                ) : (
+                  <button onClick={toggleFullScreen}>
+                    {isFull ? (
+                      <i className="fa-solid fa-down-left-and-up-right-to-center"></i>
+                    ) : (
+                      <i className="fa-solid fa-up-right-and-down-left-from-center"></i>
+                    )}
+                  </button>
+                )}
                 <button onClick={closePreview}>✖</button>
               </div>
             </div>
 
             {fileObj && fileObj.type === "application/pdf" ? (
               <div className={uploadCSS.mainCont}>
-                <iframe
-                  src={previewURL}
-                  title="pdf-preview"
-                ></iframe>
+                <iframe src={previewURL} title="pdf-preview"></iframe>
               </div>
             ) : fileObj && fileObj.type === "video/mp4" ? (
               <div className={uploadCSS.mainCont}>

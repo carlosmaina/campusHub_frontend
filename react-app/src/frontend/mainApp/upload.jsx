@@ -47,6 +47,7 @@ function Upload({ state }) {
       maxFilesize: 150, // MB
       acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip,.mp4",
       addRemoveLinks: true,
+      maxFiles: 1, // <-- only allow one file
       dictDefaultMessage: "Drag & drop files here or click + to upload",
     });
 

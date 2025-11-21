@@ -42,7 +42,7 @@ function Upload({ state }) {
 
   useEffect(() => {
     const dz = new Dropzone("#file-dropzone", {
-      url: "http://localhost:8080/upload", // backend upload endpoint
+      url: "https://campushub-mq9h.onrender.com/upload", // backend upload endpoint
       autoProcessQueue: true, // default behavior
       maxFilesize: 150, // MB
       acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip,.mp4",

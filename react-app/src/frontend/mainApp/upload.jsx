@@ -1,5 +1,9 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import Dropzone from "dropzone";
+import "dropzone/dist/dropzone.css";
 import uploadCSS from "../mainCss/upload.module.css";
+
+Dropzone.autoDiscover = false;
 
 function Upload({ state }) {
   const none = "(None selected)";
@@ -16,7 +20,6 @@ function Upload({ state }) {
   const [isFull, setIsFull] = useState(false);
   const iframeRef = useRef(null);
 
-  
   function vary() {
     resetBtn("Uploading...");
     setCharge(true);
@@ -24,15 +27,6 @@ function Upload({ state }) {
       setCharge(false);
       resetBtn(btnTxt);
     }, 60000);
-  }
-
-  function handleFile(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    resetFile(file.name);
-    setFileObj(file);
-    setPreviewURL(URL.createObjectURL(file));
   }
 
   // ---- Fullscreen / Reduce via CSS ----
@@ -45,6 +39,34 @@ function Upload({ state }) {
     setShowPreview(false);
     setIsFull(false);
   }
+
+  // ---- Initialize Dropzone ----
+  useEffect(() => {
+    const dz = new Dropzone("#file-dropzone", {
+      url: "https://campushub-mq9h.onrender.com/upload", // backend upload endpoint
+      maxFilesize: 25, // MB
+      acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip",
+      addRemoveLinks: true,
+      dictDefaultMessage: "Drag & drop files here or click + to upload",
+    });
+
+    dz.on("addedfile", (file) => {
+      resetFile(file.name);
+      setFileObj(file);
+      setPreviewURL(URL.createObjectURL(file));
+    });
+
+    dz.on("success", (file, response) => {
+      console.log("Uploaded:", response);
+      vary(); // simulate upload button state
+    });
+
+    dz.on("error", (file, errorMessage) => {
+      console.error("Upload error:", errorMessage);
+    });
+
+    return () => dz.destroy();
+  }, []);
 
   return (
     <div
@@ -61,22 +83,17 @@ function Upload({ state }) {
         or any helpful document that contributes to the learning space.
       </p>
 
-      <div className={uploadCSS.box}>
-        <input
-          type="file"
-          id="file"
-          accept=".pdf, .doc, .docx, .zip"
-          onChange={handleFile}
-        />
-        <label htmlFor="file" className={uploadCSS.uploadLabel}>
-          +
-        </label>
-        <p className={uploadCSS.hint}>Click the + icon or drag a file here</p>
-        <p>
-          <span className={uploadCSS.file}>File name : </span>
-          {fileName}
-        </p>
-      </div>
+      {/* Dropzone area */}
+      <form
+        action="/upload"
+        className={`dropzone ${uploadCSS.modernDropzone}`}
+        id="file-dropzone"
+      ></form>
+
+      <p>
+        <span className={uploadCSS.file}>File name : </span>
+        {fileName}
+      </p>
 
       <div className={uploadCSS.rules}>
         <h4>📘 Guidelines</h4>
@@ -108,6 +125,7 @@ function Upload({ state }) {
       </div>
 
       {/* ---- Preview Modal ---- */}
+      {/* ---- Preview Modal ---- */}
       {showPreview && (
         <div
           className={`${uploadCSS.previewOverlay} ${
@@ -129,7 +147,7 @@ function Upload({ state }) {
               </div>
             </div>
 
-            {fileObj.type === "application/pdf" && (
+            {fileObj && fileObj.type === "application/pdf" ? (
               <div className={uploadCSS.mainCont}>
                 <iframe
                   ref={iframeRef}
@@ -137,12 +155,9 @@ function Upload({ state }) {
                   title="pdf-preview"
                 ></iframe>
               </div>
+            ) : (
+              fileObj && <p>Preview not available.</p>
             )}
-
-            {(fileObj.type.includes("word") ||
-              fileObj.type.includes("zip") ||
-              fileObj.name.endsWith(".docx") ||
-              fileObj.name.endsWith(".zip")) && <p>Preview not available.</p>}
           </div>
         </div>
       )}

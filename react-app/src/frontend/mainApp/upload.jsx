@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Dropzone from "dropzone";
 import "dropzone/dist/dropzone.css";
 import uploadCSS from "../mainCss/upload.module.css";
@@ -56,6 +56,7 @@ function Upload({ state }) {
     });
 
     dz.on("removedfile", (file) => {
+      console.log('Your file:',file)
       // Reset state when file is removed
       resetFile(none);
       setFileObj(null);

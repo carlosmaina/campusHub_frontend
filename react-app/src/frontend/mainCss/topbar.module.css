@@ -37,6 +37,22 @@
 .activeLink {
   color: #00d1ff;
 }
+.acc {
+  cursor: pointer;
+  position: relative;
+}
+.dropdown {
+  display: none;
+  background: linear-gradient(135deg, #0b132b, #1c2541);
+  padding: 30px;
+  gap: 30px;
+  position: absolute;
+  z-index: 10;
+  flex-direction: column;
+}
+.acc:hover .dropdown {
+  display: flex;
+}
 @media (max-width: 480px) {
   .nav {
     font-size: 14px;

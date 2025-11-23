@@ -40,6 +40,27 @@ function TopBar() {
           <i className="fa-solid fa-bell"></i>
           <p>Notifications</p>
         </Link>
+
+        {/* ACCOUNT with active class + dropdown */}
+        <div className={`${topStyle.acc}`} onClick={() => setActive("account")}>
+          <p
+            className={`${topStyle.link} ${
+              active === "account" ? topStyle.activeLink : ""
+            }`}
+          >
+            Account
+          </p>
+
+          <div className={topStyle.dropdown}>
+            <Link className={topStyle.link} to="/login">
+              <i className="fa-solid fa-user"></i> Login
+            </Link>
+
+            <Link className={topStyle.link} to="/signup">
+              SignUp
+            </Link>
+          </div>
+        </div>
       </nav>
     </div>
   );

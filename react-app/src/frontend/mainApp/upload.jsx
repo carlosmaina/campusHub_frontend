@@ -15,10 +15,8 @@ function Upload({ state }) {
   const [fileObj, setFileObj] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
 
-  // ---- Modal + fullscreen states ----
   const [showPreview, setShowPreview] = useState(false);
   const [isFull, setIsFull] = useState(false);
-  // const iframeRef = useRef(null);
 
   function vary() {
     resetBtn("Uploading...");
@@ -29,12 +27,10 @@ function Upload({ state }) {
     }, 60000);
   }
 
-  // ---- Fullscreen / Reduce via CSS ----
   function toggleFullScreen() {
     setIsFull((prev) => !prev);
   }
 
-  // ---- Close modal safely ----
   function closePreview() {
     setShowPreview(false);
     setIsFull(false);
@@ -47,17 +43,22 @@ function Upload({ state }) {
       maxFilesize: 150, // MB
       acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip,.mp4",
       addRemoveLinks: true,
-      maxFiles: 1, // only allow one file
+      maxFiles: 1,
       dictDefaultMessage: "Drag & drop files here or click + to upload",
     });
 
-    // Replace old file with new one if user drags multiple
     dz.on("maxfilesexceeded", (file) => {
-      dz.removeAllFiles(); // clear existing file(s)
-      dz.addFile(file); // add the new one
+      dz.removeAllFiles();
+      dz.addFile(file);
     });
 
     dz.on("addedfile", (file) => {
+      // Reject folders: browsers set file.type empty or use webkitRelativePath
+      if (!file.type || file.webkitRelativePath) {
+        dz.removeFile(file);
+        return; // keep Dropzone active
+      }
+
       resetFile(file.name);
       setFileObj(file);
       setPreviewURL(URL.createObjectURL(file));
@@ -140,7 +141,6 @@ function Upload({ state }) {
         </button>
       </div>
 
-      {/* ---- Preview Modal ---- */}
       {showPreview && (
         <div
           className={`${uploadCSS.previewOverlay} ${
@@ -151,7 +151,7 @@ function Upload({ state }) {
             <div className={uploadCSS.previewHeader}>
               <h3>Preview: {fileName}</h3>
               <div className={uploadCSS.previewBtns}>
-                {fileObj.type === "video/mp4" ? (
+                {fileObj?.type === "video/mp4" ? (
                   ""
                 ) : (
                   <button onClick={toggleFullScreen}>

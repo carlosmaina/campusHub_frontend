@@ -5,13 +5,14 @@ import Home from "./mainApp/home.jsx";
 import Notifications from "./mainApp/notifications.jsx";
 import Login from "./mainApp/login.jsx";
 import Signup from "./mainApp/signUp.jsx";
-
+import CampusHubDashboard from "./mainApp/progressTracker.jsx";
 function App() {
   return (
     <BrowserRouter>
       <TopBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<CampusHubDashboard />}></Route>
         <Route path="/resources" element={<ResourcePage />}></Route>
         <Route path="/notifications" element={<Notifications />}></Route>
         <Route path="/login" element={<Login />}></Route>

@@ -89,7 +89,6 @@ function Search({ toggle }) {
         body: JSON.stringify({ val: query }),
       });
       const data = await res.json();
-
       if (!Array.isArray(data)) {
         setResults([]);
         setErrorMsg("Connection lost");

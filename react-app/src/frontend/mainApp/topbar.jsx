@@ -8,17 +8,25 @@ function TopBar() {
   return (
     <div className={topStyle.topBar}>
       <nav className={topStyle.nav}>
-        <Link
-          className={`${topStyle.link} ${
-            active === "home" ? topStyle.activeLink : ""
-          }`}
-          onClick={() => setActive("home")}
-          to="/"
-        >
-          <i className="fa-solid fa-house"></i>
-          <p>Home</p>
-        </Link>
-
+        <div className={topStyle.acc} onClick={() => setActive("home")}>
+          <Link
+            className={`${topStyle.link} ${
+              active === "home" ? topStyle.activeLink : ""
+            }`}
+            to="/"
+          >
+            <i className="fa-solid fa-house"></i>
+            <p>Home</p>
+          </Link>
+          <div className={topStyle.dropdown}>
+            <Link className={topStyle.link} to="/">
+              Home
+            </Link>
+            <Link className={topStyle.link} to="/dashboard">
+              Dashboard
+            </Link>
+          </div>
+        </div>
         <Link
           className={`${topStyle.link} ${
             active === "resources" ? topStyle.activeLink : ""

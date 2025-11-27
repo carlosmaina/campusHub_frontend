@@ -1,0 +1,14 @@
+@import url(./animation.css);
+.wheel {
+  font-weight: bold;
+  font-size: 18px;
+  color: #00d1ff;
+  animation: spin 0.8s linear infinite;
+}
+.spin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90vw;
+  height: 360px;
+}

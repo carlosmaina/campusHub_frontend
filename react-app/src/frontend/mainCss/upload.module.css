@@ -1,272 +1,320 @@
 @import url(./animation.css);
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
 .upload {
-  animation: fadeIn 1s ease-in;
-  width: 100vw;
-  position: absolute;
-  top: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  color: #fff;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
+	animation: fadeIn 1s ease-in;
+	width: 100vw;
+	position: absolute;
+	top: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	color: #fff;
+	text-align: center;
+	font-family: "Poppins", sans-serif;
 }
 .title {
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: 1px;
+	font-size: 1.6rem;
+	font-weight: 600;
+	letter-spacing: 1px;
 }
 
 .desc {
-  font-size: 0.95rem;
-  max-width: 80%;
-  opacity: 0.8;
+	font-size: 0.95rem;
+	max-width: 80%;
+	opacity: 0.8;
 }
 
 .box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
 }
 
 .upload input[type="file"] {
-  display: none;
+	display: none;
 }
 
 .uploadLabel {
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
-  font-size: 28px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: #fff;
-  color: #007bff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease-in-out;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
+	font-size: 28px;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	background-color: #fff;
+	color: #007bff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease-in-out;
 }
 
 .uploadLabel:hover {
-  background-color: #007bff;
-  color: #fff;
-  transform: scale(1.05);
+	background-color: #007bff;
+	color: #fff;
+	transform: scale(1.05);
 }
 
 .hint {
-  font-size: 0.9rem;
-  opacity: 0.7;
+	font-size: 0.9rem;
+	opacity: 0.7;
 }
 
 .rules {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 10px 20px;
-  text-align: left;
-  width: 80%;
-  font-size: 0.9rem;
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 10px;
+	padding: 10px 20px;
+	text-align: left;
+	width: 80%;
+	font-size: 0.9rem;
 }
 
 .rules h4 {
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #00c3ff;
+	margin-bottom: 5px;
+	font-weight: 500;
+	color: #00c3ff;
 }
 
 .rules ul {
-  list-style: square;
-  margin-left: 20px;
+	list-style: square;
+	margin-left: 20px;
 }
 
 .submitBtn {
-  position: relative;
-  overflow: hidden;
-  background: #00b7ff;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	background: #00b7ff;
+	color: white;
+	border: none;
+	padding: 12px 20px;
+	border-radius: 6px;
+	font-size: 16px;
+	cursor: pointer;
 }
 
 /* Battery charging fill (hidden initially) */
 .submitBtn::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #00ff95, #00c3ff);
-  transition: width 1.5s ease-out;
-  z-index: 0;
-  opacity: 0.8;
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 0%;
+	background: linear-gradient(90deg, #00ff95, #00c3ff);
+	transition: width 1.5s ease-out;
+	z-index: 0;
+	opacity: 0.8;
 }
 
 /* When uploading */
 .charging::after {
-  width: 100%;
+	width: 100%;
 }
 
 /* Ensure text stays above the animation */
 .btnText {
-  position: relative;
-  z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 .submitBtn:hover {
-  background-color: #0098cc;
+	background-color: #0098cc;
 }
 .submitBtn:disabled {
-  cursor: not-allowed;
+	cursor: not-allowed;
 }
 .inActive {
-  display: none;
+	display: none;
 }
 .file {
-  font-size: 18px;
-  font-weight: 900;
+	font-size: 18px;
+	font-weight: 900;
 }
 /* btn container */
 .cont {
-  display: flex;
-  gap: 30px;
+	display: flex;
+	gap: 30px;
 }
 .fullscreenControls {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 10px;
 }
 
 .fullscreenControls button {
-  padding: 8px 15px;
-  background: #00c3ff;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
+	padding: 8px 15px;
+	background: #00c3ff;
+	border: none;
+	border-radius: 6px;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
 }
 /* pdf preview */
 /* preview modal default */
 .previewOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
 }
 
 /* modal content */
 .previewBox {
-  position: relative;
-  background: #fff;
-  padding: 10px;
-  width: 50%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+	animation: fadeIn 1s ease-in-out;
+	position: relative;
+	background: #fff;
+	padding: 10px;
+	width: 50%;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 /* iframe container */
 .mainCont {
-  flex: 1;
+	flex: 1;
 }
 
 .mainCont iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+	width: 100%;
+	height: 100%;
+	border: none;
 }
 
 /* preview buttons container */
 .previewBtns {
-  display: flex;
-  position: absolute;
-  gap: 30px;
-  top: 10px;
-  right: 10px;
+	display: flex;
+	position: absolute;
+	gap: 30px;
+	top: 10px;
+	right: 10px;
 }
 .previewBtns button {
-  cursor: pointer;
-  background-color: #007bff;
-  border: none;
-  width: 40px;
-  height: 50px;
+	cursor: pointer;
+	background-color: #007bff;
+	border: none;
+	width: 40px;
+	height: 50px;
 }
 /* fullscreen modal */
 .fullscreenModal .previewBox {
-  width: 100vw;
-  height: 100vh;
+	width: 100vw;
+	height: 100vh;
 }
 /* for dropdown */
 .modernDropzone {
-  border: 2px dashed #4a90e2;
-  border-radius: 12px;
-  background: #f9fbfd;
-  padding: 40px;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-  color: #4a4a4a;
-  transition: all 0.3s ease;
-  cursor: pointer;
+	border: 2px dashed #4a90e2;
+	border-radius: 12px;
+	background: #f9fbfd;
+	padding: 40px;
+	text-align: center;
+	font-family: "Inter", sans-serif;
+	font-size: 16px;
+	color: #4a4a4a;
+	transition: all 0.3s ease;
+	cursor: pointer;
 }
 
 .modernDropzone:hover {
-  background: #eef6ff;
-  border-color: #007bff;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+	background: #eef6ff;
+	border-color: #007bff;
+	box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
 }
 
 .modernDropzone .dz-message {
-  font-size: 18px;
-  font-weight: 500;
-  color: #007bff;
+	font-size: 18px;
+	font-weight: 500;
+	color: #007bff;
 }
 
 .modernDropzone .dz-preview {
-  display: flex;
-  align-items: center;
-  margin-top: 15px;
-  padding: 10px;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	display: flex;
+	align-items: center;
+	margin-top: 15px;
+	padding: 10px;
+	border-radius: 8px;
+	background: #fff;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .modernDropzone .dz-preview .dz-details {
-  flex: 1;
-  margin-left: 10px;
+	flex: 1;
+	margin-left: 10px;
 }
 
 .modernDropzone .dz-preview .dz-filename {
-  font-weight: 600;
-  color: #333;
+	font-weight: 600;
+	color: #333;
 }
 
 .modernDropzone .dz-preview .dz-size {
-  font-size: 14px;
-  color: #666;
+	font-size: 14px;
+	color: #666;
 }
 
 .modernDropzone .dz-preview .dz-progress {
-  height: 6px;
-  border-radius: 3px;
-  background: #e0e0e0;
-  overflow: hidden;
+	height: 6px;
+	border-radius: 3px;
+	background: #e0e0e0;
+	overflow: hidden;
 }
 
 .modernDropzone .dz-preview .dz-upload {
-  background: linear-gradient(90deg, #4a90e2, #007bff);
+	background: linear-gradient(90deg, #4a90e2, #007bff);
+}
+.summary {
+	animation: fadeIn 1s ease-in-out;
+	border-radius: 5px;
+	z-index: 1000;
+	position: absolute;
+	top: 0;
+	color: #fff;
+	width: 90vw;
+	height: 400px;
+	background-color: #000;
+}
+.previewBtns2 button {
+	cursor: pointer;
+	width: 70px;
+	height: 100%;
+	border: none;
+	background-color: #007bff;
+}
+.previewBtns2 {
+	display: flex;
+	justify-content: flex-end;
+	border-radius: 5px;
+	background-color: transparent;
+	backdrop-filter: blur(20px);
+	width: 100%;
+	height: 40px;
+}
+.txts {
+	padding: 40px;
+	overflow-y: auto;
+	max-width: 90vw;
+	width: 100%;
+	max-height: 90%;
+}
+.txts h1,
+h2,
+h3 {
+	color: #0098cc;
+}
+.txts b {
+	color: #00ff95;
 }

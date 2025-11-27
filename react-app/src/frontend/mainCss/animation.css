@@ -8,14 +8,12 @@
     transform: translateY(0);
   }
 }
-
 .fadeIn {
   animation: fadeIn 0.4s ease-in-out;
 }
 .react {
   animation: spin 0.8s linear infinite;
 }
-
 @keyframes spin {
 0%{
   opacity: 0;

@@ -83,7 +83,7 @@ function Search({ toggle }) {
     setErrorMsg("");
 
     try {
-      const res = await fetch("https://campushub-mq9h.onrender.com/api", {
+      const res = await fetch("http://localhost:8080/api", {
         method: "POST",
         headers: { "content-Type": "application/json" },
         body: JSON.stringify({ val: query }),

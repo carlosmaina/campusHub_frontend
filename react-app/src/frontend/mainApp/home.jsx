@@ -1,59 +1,6 @@
 import topStyle from "../mainCss/home.module.css";
-
 function Home() {
-  return (
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+  return (    
     <div className={topStyle.homePage}>
       <div className={topStyle.homeContent}>
         {/* Hero Section */}

@@ -277,7 +277,7 @@
 	background: linear-gradient(90deg, #4a90e2, #007bff);
 }
 .summary {
-	animation: fadeIn 1s ease-in-out;
+	animation: fadeIn 0.5s ease-in-out;
 	border-radius: 5px;
 	z-index: 1000;
 	position: absolute;

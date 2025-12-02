@@ -1,0 +1,32 @@
+@import url(./animation.css);
+.chat-cont {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: vibrate-strong 0.8s infinite;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 100;
+	bottom: 30px;
+	right: 50px;
+	cursor: pointer;
+	background-color: #1c2541;
+	transition: transform 0.5s ease-in;
+}
+.chat-cont:hover {
+	background: linear-gradient(135deg, #0b132b, #1c2541);
+	transform: translateY(-2px);
+}
+.chat-cont i {
+	color: #fff;
+	font-size: 20px;
+}
+.display {
+    height: 80vh;
+    z-index: 1000;
+    right: 20px;
+    bottom: 100px;
+	position: absolute;
+}

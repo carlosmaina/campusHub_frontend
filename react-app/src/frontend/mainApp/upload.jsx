@@ -45,7 +45,7 @@ function Upload({ state }) {
 					let ent = generateSummary(res);
 				});
 		} catch (err) {
-			resetErr("Error code");
+			resetErr("Network Error");
 		}
 	}
 	function vary() {
@@ -260,7 +260,7 @@ function Upload({ state }) {
 						</button>
 					</div>
 
-					{/* ⭐ NEW: Properly formatted summary */}
+					{/*  NEW: Properly formatted summary */}
 					{!summary ? (
 						<Spin errorC={err} />
 					) : (

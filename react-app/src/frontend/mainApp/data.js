@@ -1,73 +1,116 @@
 const choice = [
 	{
 		keywords: ["who are you", "who r u", "what are you", "your name"],
-		reply: "I'm your CampusHub Assistant — your lil helper on this platform 😄",
+		replies: [
+			"I'm CampusHub Assistant — your digital homie on this platform 😄",
+			"Just your CampusHub AI buddy, always on standby 👀",
+			"Your personal assistant on CampusHub, reporting for duty 💼",
+		],
 	},
+
 	{
 		keywords: [
 			"what is this",
 			"explain platform",
 			"what does this platform do",
+			"purpose of this platform",
 		],
-		reply:
-			"CampusHub is a learning platform for uploading, downloading, and generating PDF summaries. Basically your academic booster.",
+		replies: [
+			"CampusHub is your academic plug — upload PDFs, summarize, download, all in one spot 📚✨",
+			"It's a learning platform where you manage PDFs and get summaries instantly.",
+			"Think of CampusHub as your study booster — tools + automation in one place 💡",
+		],
 	},
+
 	{
 		keywords: ["notification", "alerts", "my notifications"],
-		reply:
-			"Notifications are system messages meant for you — updates, reminders, stuff like that.",
+		replies: [
+			"Notifications keep you updated with important stuff — uploads, summaries, reminders 🔔",
+			"They’re basically system alerts tailored for you.",
+		],
 	},
+
 	{
 		keywords: ["help", "assist", "support"],
-		reply: "Sure, what do you need help with? I got you 👌",
+		replies: [
+			"Say less — what do you need help with? 👌",
+			"I’m here, just tell me what’s stressing you 😄",
+		],
 	},
+
 	{
 		keywords: ["thanks", "thank you", "appreciate"],
-		reply: "Anytime fam 😌",
+		replies: ["Always, fam 😌", "No worries, anytime 😄", "All love ✨"],
 	},
+
 	{
 		keywords: ["hey", "hi", "hello", "yo"],
-		reply: "Heyyy! What's good? 👋",
+		replies: [
+			"Heyyy, what’s good? 👋",
+			"Yo! What's poppin? 😎",
+			"Hi there! Ready to grind? 📚",
+		],
 	},
-	{
-		keywords: ["am fine", "fine", "doing good", "i'm okay"],
-		reply: "Love that for you! ✨",
-	},
+
 	{
 		keywords: ["how are you", "how r u", "are you okay"],
-		reply: "I'm operational and vibing 😎",
+		replies: [
+			"I’m chillin' and fully operational 😎",
+			"All systems green ✨ what's up with you?",
+		],
 	},
+
 	{
 		keywords: ["what can you do", "your features", "your purpose"],
-		reply:
-			"I help you navigate the platform, generate summaries, manage PDFs, and guide you through anything you need here.",
+		replies: [
+			"I guide you around CampusHub, summarize PDFs, manage tools, and answer anything you need 🔥",
+			"I help with navigation, summaries, and platform features — just ask 😄",
+		],
 	},
+
 	{
 		keywords: ["pdf", "upload pdf", "add pdf", "summaries"],
-		reply:
-			"You can upload PDFs and generate summaries instantly. Just head to the PDF Tools section.",
+		replies: [
+			"Upload your PDF in the PDF Tools section and generate summaries instantly ⚡",
+			"You can add PDFs anytime and get quick auto-summaries.",
+		],
 	},
+
 	{
 		keywords: ["account", "profile", "settings"],
-		reply:
-			"You can view or update your profile info in the Account section. Easy peasy.",
+		replies: [
+			"Your account settings are in the top menu — update anything easily 👌",
+			"Profile updates? Slide to the Account section 😄",
+		],
 	},
+
 	{
 		keywords: ["log out", "logout", "sign out"],
-		reply: "You can log out from the settings or top-right menu.",
+		replies: [
+			"You can log out from the top-right menu.",
+			"Go to your settings and hit log out — simple.",
+		],
 	},
+
 	{
 		keywords: ["payment", "paid", "subscription", "free trial"],
-		reply:
-			"CampusHub offers free and premium features. Paid users unlock unlimited PDF tools and advanced summaries.",
+		replies: [
+			"CampusHub has both free and premium features. Premium unlocks unlimited PDF tools 🔓",
+			"Free plan works fine, but premium gives you more power 🎯",
+		],
 	},
+
 	{
 		keywords: ["bye", "goodbye", "see you"],
-		reply: "Bye! Catch you later 👋",
+		replies: ["See you around 👋", "Catch you later 😄", "Bye! Stay sharp 📚"],
 	},
+
 	{
-		keywords: ["Info", "more"],
-		reply: "Contact 0751433064 to reach Carlos Maina",
+		keywords: ["info", "more", "contact"],
+		replies: [
+			"For assistance, reach out to Carlos Maina at 0751433064.",
+			"Hit up Carlos Maina (0751433064) for more details.",
+		],
 	},
 ];
 

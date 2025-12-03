@@ -1,5 +1,12 @@
 const choice = [
 	{
+		keywords: ["what can you do", "your features", "your purpose"],
+		reply: [
+			"I guide you around CampusHub, summarize PDFs, manage tools, and answer anything you need 🔥",
+			"I help with navigation, summaries, and platform features — just ask 😄",
+		],
+	},
+	{
 		keywords: ["who are you", "who r u", "what are you", "your name"],
 		reply: [
 			"I'm CampusHub Assistant — your digital homie on this platform 😄",
@@ -7,7 +14,6 @@ const choice = [
 			"Your personal assistant on CampusHub, reporting for duty 💼",
 		],
 	},
-
 	{
 		keywords: [
 			"what is this",
@@ -59,15 +65,6 @@ const choice = [
 			"All systems green ✨ what's up with you?",
 		],
 	},
-
-	{
-		keywords: ["what can you do", "your features", "your purpose"],
-		reply: [
-			"I guide you around CampusHub, summarize PDFs, manage tools, and answer anything you need 🔥",
-			"I help with navigation, summaries, and platform features — just ask 😄",
-		],
-	},
-
 	{
 		keywords: ["pdf", "upload pdf", "add pdf", "summaries"],
 		reply: [

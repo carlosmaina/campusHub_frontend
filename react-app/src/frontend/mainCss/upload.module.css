@@ -319,3 +319,15 @@ h3 {
 	color: #00ff95;
 }
 
+.dropzone .dz-preview {
+	position: relative;
+}
+
+.dropzone .dz-remove {
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+
+.dropzone .dz-preview:hover .dz-remove {
+	opacity: 1;
+}

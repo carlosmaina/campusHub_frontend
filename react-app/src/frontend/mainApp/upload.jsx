@@ -21,9 +21,11 @@ function Upload({ state }) {
 	const [summary, setSumm] = useState(null);
 	const [conc, setConc] = useState(false);
 	const [err, resetErr] = useState(null);
+	const [progress, setProgress] = useState(0);
+	const [dragOver, setDragOver] = useState(false);
 
 	setTimeout(() => {
-		if (!summary) return resetErr("Response error,Low network connectivity");
+		if (!summary) return resetErr("Response error, Low network connectivity");
 	}, 300000);
 
 	async function dataEnt() {
@@ -81,6 +83,17 @@ function Upload({ state }) {
 		setIsFull(false);
 	}
 
+	const getFileIcon = (type) => {
+		if (!type) return "📁";
+		if (type.includes("pdf")) return "📄";
+		if (type.includes("word")) return "📝";
+		if (type.includes("ppt")) return "📊";
+		if (type.includes("zip")) return "🗜️";
+		if (type.includes("image")) return "🖼️";
+		if (type.includes("video")) return "🎥";
+		return "📁";
+	};
+
 	useEffect(() => {
 		const dz = new Dropzone("#file-dropzone", {
 			url: "https://campushub-mq9h.onrender.com/upload",
@@ -88,9 +101,15 @@ function Upload({ state }) {
 			maxFilesize: 150,
 			acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip,.mp4,.jpg,.jpeg,.png,.gif",
 			addRemoveLinks: true,
+			dictRemoveFile: "Remove", // modern remove icon
 			maxFiles: 1,
 			dictDefaultMessage: "Drag & drop files here or click + to upload",
 		});
+
+		// Drag visual effect
+		dz.on("dragover", () => setDragOver(true));
+		dz.on("dragleave", () => setDragOver(false));
+		dz.on("drop", () => setDragOver(false));
 
 		dz.on("maxfilesexceeded", (file) => {
 			dz.removeAllFiles();
@@ -104,13 +123,13 @@ function Upload({ state }) {
 				return;
 			}
 
-			// Enable PDF summary only for PDFs
 			if (file.type === "application/pdf") setIsPreviewable(true);
 			else setIsPreviewable(false);
 
 			resetFile(file.name);
 			setFileObj(file);
 			setPreviewURL(URL.createObjectURL(file));
+			setProgress(0);
 		});
 
 		dz.on("removedfile", () => {
@@ -120,15 +139,14 @@ function Upload({ state }) {
 			setPreviewURL(null);
 			setShowPreview(false);
 			setIsPreviewable(false);
+			setProgress(0);
 		});
 
-		dz.on("success", (file, response) => {
-			resetErr(null);
-		});
+		dz.on("uploadprogress", (file, prog) => setProgress(prog));
 
-		dz.on("error", (file, errorMessage) => {
-			console.log(errorMessage);
-		});
+		dz.on("success", (file, response) => resetErr(null));
+
+		dz.on("error", (file, errorMessage) => console.log(errorMessage));
 
 		return () => dz.destroy();
 	}, []);
@@ -150,14 +168,28 @@ function Upload({ state }) {
 
 			<form
 				action="/upload"
-				className={`dropzone ${uploadCSS.modernDropzone}`}
+				className={`dropzone ${uploadCSS.modernDropzone} ${
+					dragOver ? uploadCSS.dragOver : ""
+				}`}
 				id="file-dropzone"
 			></form>
 
-			<p>
-				<span className={uploadCSS.file}>File name : </span>
-				{fileName}
-			</p>
+			{fileObj && (
+				<div className={uploadCSS.fileInfo}>
+					<span className={uploadCSS.fileIcon}>
+						{getFileIcon(fileObj.type)}
+					</span>
+					<span className={uploadCSS.fileName}>{fileName}</span>
+				</div>
+			)}
+
+			{charge && (
+				<progress
+					value={progress}
+					max="100"
+					className={uploadCSS.progressBar}
+				></progress>
+			)}
 
 			<div className={uploadCSS.rules}>
 				<h4>📘 Guidelines</h4>
@@ -269,7 +301,13 @@ function Upload({ state }) {
 								<img
 									src={previewURL}
 									alt="preview"
-									style={{ width: "100%", borderRadius: "8px" }}
+									style={{
+										width: "100%",
+										height: "100%",
+										borderRadius: "8px",
+										objectFit: "contain",
+										objectPosition: "center",
+									}}
 								/>
 							)}
 							{![

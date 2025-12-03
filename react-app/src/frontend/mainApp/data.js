@@ -18,6 +18,7 @@ const choice = [
 		keywords: [
 			"what is this",
 			"platform",
+			"website",
 			"explain platform",
 			"what does this platform do",
 			"purpose of this platform",

@@ -1,103 +1,109 @@
 import React from "react";
-import { Bar, Line, Doughnut } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
+import "../mainCss/dashboard.css";
 
-const CampusHubDashboard = () => {
-  // 📊 Bar Chart: Course Completion
-  const completionData = {
-    labels: ["Math", "Science", "History", "English", "ICT"],
-    datasets: [
-      {
-        label: "Completion (%)",
-        data: [80, 65, 90, 75, 50],
-        backgroundColor: "#4caf50",
-      },
-    ],
-  };
+const StudentDashboard = () => {
+	const student = {
+		name: "John Doe",
+		course: "Bachelor of Science (ICT)",
+		year: "Year 2, Semester 1",
+		reg: "RU/SC/2023/0190",
+		email: "john.doe@campushub.com",
+	};
 
-  const completionOptions = {
-    responsive: true,
-    plugins: {
-      title: { display: true, text: "Course Completion Tracker" },
-    },
-    scales: {
-      y: { beginAtZero: true, max: 100 },
-    },
-  };
+	const stats = [
+		{ label: "Completed Units", value: 10 },
+		{ label: "Pending Units", value: 4 },
+		{ label: "Study Hours (Weekly)", value: "14 hrs" },
+		{ label: "Performance", value: "78%" },
+	];
 
-  // 📈 Line Chart: Weekly Study Hours
-  const studyData = {
-    labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
-    datasets: [
-      {
-        label: "Study Hours",
-        data: [12, 15, 10, 18],
-        borderColor: "#2196f3",
-        backgroundColor: "rgba(33, 150, 243, 0.3)",
-        tension: 0.3,
-      },
-    ],
-  };
+	const barData = {
+		labels: ["Math", "ICT", "Physics", "History", "English"],
+		datasets: [
+			{
+				label: "Grades (%)",
+				data: [80, 75, 67, 90, 72],
+				backgroundColor: "#0b132b",
+				borderRadius: 6,
+			},
+		],
+	};
 
-  const studyOptions = {
-    responsive: true,
-    plugins: {
-      title: { display: true, text: "Weekly Study Hours" },
-    },
-  };
+	const lineData = {
+		labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+		datasets: [
+			{
+				label: "Study Hours",
+				data: [12, 10, 15, 14],
+				borderColor: "#0b132b",
+				tension: 0.3,
+			},
+		],
+	};
 
-  // 🍩 Doughnut Chart: Course Distribution
-  const distributionData = {
-    labels: ["Math", "Science", "History", "English", "ICT"],
-    datasets: [
-      {
-        label: "Course Distribution",
-        data: [25, 20, 15, 25, 15],
-        backgroundColor: [
-          "#f44336",
-          "#2196f3",
-          "#ff9800",
-          "#4caf50",
-          "#9c27b0",
-        ],
-      },
-    ],
-  };
+	return (
+		<div className="w3-dashboard-container">
+			{/* Header */}
+			<header className="w3-header">
+				<h2>Student Dashboard</h2>
+			</header>
 
-  const distributionOptions = {
-    responsive: true,
-    plugins: {
-      title: { display: true, text: "Course Distribution" },
-      legend: { position: "bottom" },
-    },
-  };
+			{/* Student Info */}
+			<section className="student-info">
+				<h3>Student Information</h3>
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h2 style={{ textAlign: "center" }}>📚 CampusHub Learner Dashboard</h2>
+				<table className="info-table">
+					<tbody>
+						<tr>
+							<th>Name</th>
+							<td>{student.name}</td>
+						</tr>
+						<tr>
+							<th>Course</th>
+							<td>{student.course}</td>
+						</tr>
+						<tr>
+							<th>Year</th>
+							<td>{student.year}</td>
+						</tr>
+						<tr>
+							<th>Registration No.</th>
+							<td>{student.reg}</td>
+						</tr>
+						<tr>
+							<th>Email</th>
+							<td>{student.email}</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "30px",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        <div style={{ width: "400px" }}>
-          <Bar data={completionData} options={completionOptions} />
-        </div>
+			{/* Stats */}
+			<section className="stats-section">
+				{stats.map((s, index) => (
+					<div key={index} className="stat-card">
+						<h4>{s.label}</h4>
+						<p>{s.value}</p>
+					</div>
+				))}
+			</section>
 
-        <div style={{ width: "400px" }}>
-          <Line data={studyData} options={studyOptions} />
-        </div>
+			{/* Charts */}
+			<section className="charts-section">
+				<div className="chart-card">
+					<h3>Performance Overview</h3>
+					<Bar data={barData} />
+				</div>
 
-        <div style={{ width: "300px" }}>
-          <Doughnut data={distributionData} options={distributionOptions} />
-        </div>
-      </div>
-    </div>
-  );
+				<div className="chart-card">
+					<h3>Weekly Study Hours</h3>
+					<Line data={lineData} />
+				</div>
+			</section>
+		</div>
+	);
 };
 
-export default CampusHubDashboard;
+export default StudentDashboard;

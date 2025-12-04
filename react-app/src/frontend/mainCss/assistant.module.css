@@ -44,7 +44,7 @@
 	gap: 10px;
 	padding: 10px;
 	overflow-y: auto;
-	max-height: 350px;
+	max-height: 400px;
 }
 
 .message {
@@ -70,11 +70,12 @@
 	color: white;
 	align-self: flex-end;
 }
-
 /* INPUT AREA */
 .inputArea {
 	display: flex;
 	position: absolute;
+	height: 60px;
+	z-index: 10;
 	width: 100%;
 	bottom: 0;
 	padding: 12px;
@@ -109,9 +110,4 @@
 
 .sendBtn:hover {
 	background: #1d4ed8;
-}
-@media (min-width:480px) {
-	.messagesArea{
-		height: 300px;
-	}
 }

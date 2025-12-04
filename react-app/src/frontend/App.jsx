@@ -6,11 +6,13 @@ import Notifications from "./mainApp/notifications.jsx";
 import Login from "./mainApp/login.jsx";
 import Signup from "./mainApp/signUp.jsx";
 import CampusHubAssistantChat from "./mainApp/assistant.jsx";
+import StudentDashboard from "./mainApp/progressTracker.jsx";
 function App() {
 	return (
 		<BrowserRouter>
 			<TopBar />
 			<Routes>
+				<Route path="/dashboard" element={<StudentDashboard />}></Route>
 				<Route path="/" element={<Home />} />
 				<Route path="/resources" element={<ResourcePage />}></Route>
 				<Route path="/ai" element={<CampusHubAssistantChat />}></Route>

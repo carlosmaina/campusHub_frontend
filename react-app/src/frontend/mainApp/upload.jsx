@@ -111,7 +111,7 @@ function Upload({ state }) {
 
 	useEffect(() => {
 		const dz = new Dropzone("#file-dropzone", {
-			url: "https://campushub-mq9h.onrender.com/upload",
+			url: "http://localhost:8080/upload",
 			autoProcessQueue: true,
 			maxFilesize: 150,
 			acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip,.mp4,.jpg,.jpeg,.png,.gif",
@@ -297,7 +297,7 @@ function Upload({ state }) {
 									}}
 								>
 									{" "}
-									<i class="fas fa-download"></i>
+									<i className="fas fa-download"></i>
 								</button>
 								<button
 									className={uploadCSS.closeBtn}

@@ -40,7 +40,7 @@ function Upload({ state }) {
 	}, 4000);
 	async function dataEnt() {
 		try {
-			await fetch("http://localhost:8080/summary")
+			await fetch("https://campushub-mq9h.onrender.com/summary")
 				.then((data) => data.json())
 				.then((res) => {
 					generateSummary(res.ai);
@@ -51,7 +51,7 @@ function Upload({ state }) {
 	}
 
 	function pdf() {
-		fetch("http://localhost:8080/pdfSummary")
+		fetch("https://campushub-mq9h.onrender.com/pdfSummary")
 			.then((data) => data.json())
 			.then((res) => console.log(res));
 	}
@@ -111,7 +111,7 @@ function Upload({ state }) {
 
 	useEffect(() => {
 		const dz = new Dropzone("#file-dropzone", {
-			url: "http://localhost:8080/upload",
+			url: "https://campushub-mq9h.onrender.com/upload",
 			autoProcessQueue: true,
 			maxFilesize: 150,
 			acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip,.mp4,.jpg,.jpeg,.png,.gif",

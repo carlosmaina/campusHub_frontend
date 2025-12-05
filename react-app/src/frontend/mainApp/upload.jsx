@@ -40,7 +40,7 @@ function Upload({ state }) {
 	}, 4000);
 	async function dataEnt() {
 		try {
-			await fetch("https://campushub-mq9h.onrender.com/summary")
+			await fetch("http://localhost:8080/summary")
 				.then((data) => data.json())
 				.then((res) => {
 					generateSummary(res.ai);
@@ -50,6 +50,11 @@ function Upload({ state }) {
 		}
 	}
 
+	function pdf() {
+		fetch("http://localhost:8080/pdfSummary")
+			.then((data) => data.json())
+			.then((res) => console.log(res));
+	}
 	function vary() {
 		resetBtn("Uploading...");
 		setCharge(true);
@@ -284,6 +289,15 @@ function Upload({ state }) {
 							<div className={uploadCSS.previewBtns2}>
 								<button className={uploadCSS.closeBtn} title="save summary">
 									<i className="fas fa-save" onClick={() => disReset(true)}></i>
+								</button>
+								<button
+									className={uploadCSS.closeBtn}
+									onClick={() => {
+										pdf();
+									}}
+								>
+									{" "}
+									<i class="fas fa-download"></i>
 								</button>
 								<button
 									className={uploadCSS.closeBtn}

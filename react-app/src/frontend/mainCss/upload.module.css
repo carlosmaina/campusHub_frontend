@@ -421,7 +421,7 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	z-index: 10;
+	z-index: 20;
 }
 .hamburger i {
 	font-size: 30px;
@@ -440,7 +440,7 @@
 	padding: 20px;
 	transform: translateX(-260px);
 	transition: 0.3s ease;
-	z-index: 9998;
+	z-index: 10;
 	box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
 }
 

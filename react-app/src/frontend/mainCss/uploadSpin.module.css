@@ -16,7 +16,7 @@
 }
 .rotate {
 	background-color: transparent;
-  animation: rotate 2s linear infinite;
+	animation: rotate 2s linear infinite;
 	border-bottom: 4px solid #fff;
 	border-top: 4px solid #00d1ff;
 	border-radius: 50%;

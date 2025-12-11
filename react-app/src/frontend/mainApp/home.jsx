@@ -9,19 +9,21 @@ function Home() {
 	return (
 		<div className={topStyle.homePage}>
 			{/* Chat Button */}
-			<div
-				className="chat-cont"
-				title="Assistant"
-				onClick={() => reset(!active)}
-			>
-				<i className="fas fa-comment"></i>
-			</div>
-
-			{active && (
-				<div className="display">
-					<CampusHubAssistantChat stack={reset} reset={reset} />
+			<div className={`${active === true ? "all-gt " : ""}`}>
+				<div
+					className="chat-cont"
+					title="Assistant"
+					onClick={() => reset(!active)}
+				>
+					<i className="fas fa-comment"></i>
 				</div>
-			)}
+
+				{active && (
+					<div className="display">
+						<CampusHubAssistantChat stack={reset} reset={reset} />
+					</div>
+				)}
+			</div>
 
 			<div className={topStyle.homeContent}>
 				{/* ================= HERO SECTION ================= */}

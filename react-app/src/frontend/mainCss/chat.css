@@ -7,12 +7,12 @@
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-	position: absolute;
+	position: fixed;
 	z-index: 10;
 	bottom: 30px;
 	right: 50px;
 	cursor: pointer;
-	background-color: #1c2541;
+	background-color: #00aee0;
 	transition: transform 0.5s ease-in;
 }
 .chat-cont:hover {
@@ -28,5 +28,5 @@
     z-index: 1000;
     right: 20px;
     bottom: 100px;
-	position: absolute;
+	position: fixed;
 }

@@ -1,61 +1,63 @@
 @import url(./theme.css);
 :root {
-  --hoverActive-color: #00d1ff;
-  --background-color: #0b132b;
+	--hoverActive-color: #00d1ff;
+	--background-color: #0b132b;
 }
 .topBar {
-  width: 100vw;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	width: 100vw;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 .nav {
-  display: flex;
-  z-index: 100;
-  backdrop-filter: blur(100px);
-  padding-left: 20px;
-  align-items: center;
-  background-color: transparent;
-  margin-bottom: 60px;
-  width: 100%;
-  height: 60px;
-  position: fixed;
-  gap: 1.5rem;
+	display: flex;
+	padding-right: 100px;
+	z-index: 100;
+	backdrop-filter: blur(100px);
+	padding-left: 20px;
+	align-items: center;
+	justify-content: flex-end;
+	background-color: transparent;
+	margin-bottom: 60px;
+	width: 100%;
+	height: 60px;
+	position: fixed;
+	gap: 1.5rem;
 }
 
 .link {
-  display: flex;
-  gap: 5px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
+	display: flex;
+	gap: 5px;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.3s;
 }
 
 .link:hover {
-  color: var(--hoverActive-color);
+	color: var(--hoverActive-color);
 }
 
 .activeLink {
-  color: #00d1ff;
+	color: #00d1ff;
 }
 .acc {
-  cursor: pointer;
-  position: relative;
+	cursor: pointer;
+	position: relative;
 }
 .dropdown {
-  display: none;
-  background: linear-gradient(135deg, #0b132b, #1c2541);
-  padding: 30px;
-  gap: 30px;
-  position: absolute;
-  z-index: 10;
-  flex-direction: column;
+	display: none;
+	background: linear-gradient(135deg, #0b132b, #1c2541);
+	padding: 30px;
+	gap: 30px;
+	position: absolute;
+	z-index: 10;
+	flex-direction: column;
 }
 .acc:hover .dropdown {
-  display: flex;
+	display: flex;
 }
 @media (max-width: 480px) {
-  .nav {
-    font-size: 14px;
-    gap: 10px;
-  }
+	.nav {
+		font-size: 14px;
+		gap: 10px;
+	}
 }

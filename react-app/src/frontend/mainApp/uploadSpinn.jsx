@@ -5,7 +5,10 @@ function Spin({ errorC }) {
 			{errorC ? (
 				<p style={{ color: "red", fontWeight: "bold" }}>{errorC}</p>
 			) : (
-				<p className={spin.wheel}>Generating summary...</p>
+				<div className={spin.spin}>
+					<div className={spin.rotate}></div>
+					<p className={spin.wheel}>Generating summary...</p>
+				</div>
 			)}
 		</div>
 	);

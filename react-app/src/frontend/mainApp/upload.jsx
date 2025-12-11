@@ -7,6 +7,7 @@ import uploadCSS from "../mainCss/upload.module.css";
 Dropzone.autoDiscover = false;
 
 function Upload({ state }) {
+	// for the sidebar
 	const [openSide, setOpenSide] = useState(false);
 
 	function toggleSidebar() {
@@ -15,24 +16,29 @@ function Upload({ state }) {
 
 	const none = "(None selected)";
 	const btnTxt = "Upload File";
+	// displays saved for saved summaries
 	const [saveDisplay, disReset] = useState(false);
+	// getting the file name
 	const [fileName, resetFile] = useState(none);
+	// upload btn innerText
 	const [btn, resetBtn] = useState(btnTxt);
+	// upload btn inner display looks like a charge
 	const [charge, setCharge] = useState(false);
+	// getting the file object
 	const [fileObj, setFileObj] = useState(null);
 	const [previewURL, setPreviewURL] = useState(null);
 	const [showPreview, setShowPreview] = useState(false);
 	const [isPreviewable, setIsPreviewable] = useState(false);
 	const [isFull, setIsFull] = useState(false);
+	// saving summary
 	const [summary, setSumm] = useState(null);
+	// enable summary preview
 	const [conc, setConc] = useState(false);
+	// pass erorr mesage for display
 	const [err, resetErr] = useState(null);
+	// for progress bar
 	const [progress, setProgress] = useState(0);
 	const [dragOver, setDragOver] = useState(false);
-
-	setTimeout(() => {
-		if (!summary) return resetErr("Response error, Low network connectivity");
-	}, 300000);
 	setTimeout(() => {
 		if (saveDisplay === true) {
 			disReset(false);
@@ -40,10 +46,14 @@ function Upload({ state }) {
 	}, 4000);
 	async function dataEnt() {
 		try {
-			await fetch("https://campushub-mq9h.onrender.com/summary")
+			await fetch("http://localhost:8000/summary", {
+				method: "GET",
+				credentials: "include",
+			})
 				.then((data) => data.json())
 				.then((res) => {
 					generateSummary(res.ai);
+					console.log(res);
 				});
 		} catch (err) {
 			resetErr("Network Error");
@@ -84,7 +94,6 @@ function Upload({ state }) {
 	}
 
 	function generateSummary(responseText) {
-		setSumm("Generating...");
 		const formatted = formatAIResponse(responseText);
 		setSumm(formatted);
 	}
@@ -111,7 +120,7 @@ function Upload({ state }) {
 
 	useEffect(() => {
 		const dz = new Dropzone("#file-dropzone", {
-			url: "https://campushub-mq9h.onrender.com/upload",
+			url: "http://localhost:8000/upload",
 			autoProcessQueue: true,
 			maxFilesize: 150,
 			acceptedFiles: ".pdf,.doc,.docx,.pptx,.zip,.mp4,.jpg,.jpeg,.png,.gif",
@@ -309,7 +318,10 @@ function Upload({ state }) {
 							</div>
 
 							{!summary ? (
-								<Spin errorC={err} />
+								<div className={uploadCSS.txts}>
+									{" "}
+									<Spin errorC={err} />
+								</div>
 							) : (
 								<div
 									className={uploadCSS.txts}

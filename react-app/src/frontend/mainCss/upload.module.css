@@ -483,3 +483,7 @@
 .dropzone .dz-preview:hover .dz-remove {
 	opacity: 1;
 }
+.spin{
+	width: 90vw;
+	height: 360px;
+}

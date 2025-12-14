@@ -16,7 +16,10 @@
 	align-items: center;
 	text-align: center;
 	padding: 6rem 1rem 4rem;
-	background: linear-gradient(135deg, #0b132b, #1c2541);
+	background-image: url(../../assets/pexels-felix-mittermeier-956999.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	filter: brightness(0.8);
 	color: #fff;
 }
 
@@ -78,7 +81,7 @@
 
 .features h2 {
 	font-size: 2rem;
-  color: #fff;
+	color: #fff;
 	margin-bottom: 2rem;
 }
 

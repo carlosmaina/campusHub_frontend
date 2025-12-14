@@ -1,77 +1,80 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import topStyle from "../mainCss/topbar.module.css";
 
 function TopBar() {
-  const [active, setActive] = useState("home");
+	const location = useLocation();
 
-  return (
-    <div className={topStyle.topBar}>
-      <nav className={topStyle.nav}>
-        <div className={topStyle.acc} onClick={() => setActive("home")}>
-          <Link
-            className={`${topStyle.link} ${
-              active === "home" ? topStyle.activeLink : ""
-            }`}
-            to="/"
-          >
-            <i className="fa-solid fa-house"></i>
-            <p>Home</p>
-          </Link>
-          <div className={topStyle.dropdown}>
-            <Link className={topStyle.link} to="/">
-              Home
-            </Link>
-            <Link className={topStyle.link} to="/dashboard">
-              Dashboard
-            </Link>
-          </div>
-        </div>
-        <Link
-          className={`${topStyle.link} ${
-            active === "resources" ? topStyle.activeLink : ""
-          }`}
-          onClick={() => setActive("resources")}
-          to="/resources"
-        >
-          <i className="fa-solid fa-folder"></i>
-          <p>Resources</p>
-        </Link>
+	return (
+		<div className={topStyle.topBar}>
+			<nav className={topStyle.nav}>
+				{/* HOME */}
+				<div className={topStyle.acc}>
+					<Link
+						to="/"
+						className={`${topStyle.link} ${
+							location.pathname === "/" ? topStyle.activeLink : ""
+						}`}
+					>
+						<i className="fa-solid fa-house"></i>
+						<p>Home</p>
+					</Link>
 
-        <Link
-          className={`${topStyle.link} ${
-            active === "notifications" ? topStyle.activeLink : ""
-          }`}
-          onClick={() => setActive("notifications")}
-          to="/notifications"
-        >
-          <i className="fa-solid fa-bell"></i>
-          <p>Notifications</p>
-        </Link>
+					<div className={topStyle.dropdown}>
+						<Link className={topStyle.link} to="/">
+							Home
+						</Link>
+						<Link className={topStyle.link} to="/dashboard">
+							Dashboard
+						</Link>
+					</div>
+				</div>
 
-        {/* ACCOUNT with active class + dropdown */}
-        <div className={`${topStyle.acc}`} onClick={() => setActive("account")}>
-          <p
-            className={`${topStyle.link} ${
-              active === "account" ? topStyle.activeLink : ""
-            }`}
-          >
-            Account
-          </p>
+				{/* RESOURCES */}
+				<Link
+					to="/resources"
+					className={`${topStyle.link} ${
+						location.pathname === "/resources" ? topStyle.activeLink : ""
+					}`}
+				>
+					<i className="fa-solid fa-folder"></i>
+					<p>Resources</p>
+				</Link>
 
-          <div className={topStyle.dropdown}>
-            <Link className={topStyle.link} to="/login">
-              <i className="fa-solid fa-user"></i> Login
-            </Link>
+				{/* NOTIFICATIONS */}
+				<Link
+					to="/notifications"
+					className={`${topStyle.link} ${
+						location.pathname === "/notifications" ? topStyle.activeLink : ""
+					}`}
+				>
+					<i className="fa-solid fa-bell"></i>
+					<p>Notifications</p>
+				</Link>
 
-            <Link className={topStyle.link} to="/signup">
-              SignUp
-            </Link>
-          </div>
-        </div>
-      </nav>
-    </div>
-  );
+				{/* ACCOUNT */}
+				<div className={topStyle.acc}>
+					<p
+						className={`${topStyle.link} ${
+							location.pathname === "/login" || location.pathname === "/signup"
+								? topStyle.activeLink
+								: ""
+						}`}
+					>
+						Account
+					</p>
+
+					<div className={topStyle.dropdown}>
+						<Link className={topStyle.link} to="/login">
+							Login
+						</Link>
+						<Link className={topStyle.link} to="/signup">
+							SignUp
+						</Link>
+					</div>
+				</div>
+			</nav>
+		</div>
+	);
 }
 
 export default TopBar;

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import TopBar from "./mainApp/topbar.jsx";
+import VideoGallery from "./mainApp/videos.jsx";
 import Home from "./mainApp/home.jsx";
 import ResourcePage from "./mainApp/resources.jsx";
 import Notifications from "./mainApp/notifications.jsx";
@@ -37,7 +38,6 @@ function App() {
 						</AppLayout>
 					}
 				/>
-
 				<Route
 					path="/dashboard"
 					element={
@@ -55,7 +55,14 @@ function App() {
 						</AppLayout>
 					}
 				/>
-
+				<Route
+					path="videos"
+					element={
+						<AppLayout>
+							<VideoGallery />
+						</AppLayout>
+					}
+				></Route>
 				<Route
 					path="/ai"
 					element={

@@ -1,4 +1,4 @@
-@import url(./animation.css);
+@import url(./animations_themes/animation.css);
 * {
 	padding: 0;
 	margin: 0;
@@ -81,12 +81,10 @@
 	font-weight: 500;
 	color: #00c3ff;
 }
-
 .rules ul {
 	list-style: square;
 	margin-left: 20px;
 }
-
 .submitBtn {
 	position: relative;
 	overflow: hidden;
@@ -434,7 +432,7 @@
 	top: 0;
 	left: 0;
 	width: 250px;
-	max-height: 50vh;
+	min-height: 50vh;
 	color: white;
 	backdrop-filter: blur(20px);
 	background-color: rgba(0, 0, 0, 0.4);
@@ -483,7 +481,7 @@
 .dropzone .dz-preview:hover .dz-remove {
 	opacity: 1;
 }
-.spin{
+.spin {
 	width: 90vw;
 	height: 360px;
 }

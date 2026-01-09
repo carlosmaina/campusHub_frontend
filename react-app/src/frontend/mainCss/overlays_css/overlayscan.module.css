@@ -1,0 +1,22 @@
+@import url(../animations_themes/animation.css);
+.show {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	padding: 20px;
+	width: 50vw;
+	height: 50vh;
+	background-color: #000;
+	margin-top: 50px;
+}
+.content {
+	display: flex;
+}
+.react {
+	animation: spin 0.8s linear infinite;
+	color: #00d1ff;
+}
+.errMess {
+	color: red;
+}

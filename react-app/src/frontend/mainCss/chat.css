@@ -1,4 +1,4 @@
-@import url(./animation.css);
+@import url(./animations_themes/animation.css);
 .all-gt {
 	inset: 0;
 	backdrop-filter: blur(2px);

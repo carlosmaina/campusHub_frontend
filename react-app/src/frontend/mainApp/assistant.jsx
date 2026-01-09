@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../mainCss/assistant.module.css";
-import choice from "./data.js";
+import choice from "./DATA/data.js";
 
 function CampusHubAssistantChat({ stack, reset }) {
 	const [user, setUser] = useState("");

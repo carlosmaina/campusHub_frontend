@@ -1,4 +1,4 @@
-import spin from "../mainCss/uploadSpin.module.css";
+import spin from "../mainCss/overlays_css/uploadSpin.module.css";
 function Spin({ errorC }) {
 	return (
 		<div className={spin.spin}>

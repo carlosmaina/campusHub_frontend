@@ -3,7 +3,6 @@ import Dropzone from "dropzone";
 import "dropzone/dist/dropzone.css";
 import Spin from "./uploadSpinn.jsx";
 import uploadCSS from "../mainCss/upload.module.css";
-
 Dropzone.autoDiscover = false;
 
 function Upload({ state }) {
@@ -13,6 +12,7 @@ function Upload({ state }) {
 	function toggleSidebar() {
 		setOpenSide((prev) => !prev);
 	}
+	let [data] = useState(localStorage.getItem("user"));
 
 	const none = "(None selected)";
 	const btnTxt = "Upload File";
@@ -52,18 +52,12 @@ function Upload({ state }) {
 			})
 				.then((data) => data.json())
 				.then((res) => {
-					generateSummary(res.ai);
-					console.log(res);
+					if (res.ai) return generateSummary(res.ai);
+					resetErr("Network Error");
 				});
 		} catch (err) {
 			resetErr("Network Error");
 		}
-	}
-
-	function pdf() {
-		fetch("https://campushub-mq9h.onrender.com/pdfSummary")
-			.then((data) => data.json())
-			.then((res) => console.log(res));
 	}
 	function vary() {
 		resetBtn("Uploading...");
@@ -128,6 +122,17 @@ function Upload({ state }) {
 			dictRemoveFile: "Remove", // modern remove icon
 			maxFiles: 1,
 			dictDefaultMessage: "Drag & drop files here or click + to upload",
+		});
+		// Add extra JSON data before sending
+		dz.on("sending", (file, xhr, formData) => {
+			// Example JSON data
+			const jsonData = {
+				data,
+			};
+			// Append each key-value pair to the formData
+			for (let key in jsonData) {
+				formData.append(key, jsonData[key]);
+			}
 		});
 
 		// Drag visual effect

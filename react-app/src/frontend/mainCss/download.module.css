@@ -1,4 +1,4 @@
-@import url(./animation.css);
+@import url(./animations_themes/animation.css);
 .download {
   display: flex;
   flex-direction: column;
@@ -23,6 +23,7 @@
 }
 /* btns */
 .search {
+  border-radius: 5px;
   background-color: #000;
   color: #fff;
   cursor: pointer;

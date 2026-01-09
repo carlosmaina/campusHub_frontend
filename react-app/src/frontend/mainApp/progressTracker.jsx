@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import "../mainCss/dashboard.css";
 
 const StudentDashboard = () => {
+	let [st, reset_st] = useState(
+		() => JSON.parse(localStorage.getItem("user")) || []
+	);
 	const student = {
-		name: "John Doe",
+		name: `${st.name} ${st.lname}`,
 		course: "Bachelor of Science (ICT)",
 		year: "Year 2, Semester 1",
 		reg: "RU/SC/2023/0190",
-		email: "john.doe@campushub.com",
+		email: st.email,
 	};
 
 	const stats = [

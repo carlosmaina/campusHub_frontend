@@ -5,16 +5,16 @@ import "../mainCss/dashboard.css";
 
 const StudentDashboard = () => {
 	let [st, reset_st] = useState(
-		() => JSON.parse(localStorage.getItem("user")) || []
+		() => JSON.parse(sessionStorage.getItem("users")) || []
 	);
+	console.log(st);
 	const student = {
-		name: `${st.name} ${st.lname}`,
+		User: st.user,
 		course: "Bachelor of Science (ICT)",
 		year: "Year 2, Semester 1",
 		reg: "RU/SC/2023/0190",
 		email: st.email,
 	};
-
 	const stats = [
 		{ label: "Completed Units", value: 10 },
 		{ label: "Pending Units", value: 4 },
@@ -61,7 +61,7 @@ const StudentDashboard = () => {
 					<tbody>
 						<tr>
 							<th>Name</th>
-							<td>{student.name}</td>
+							<td>{student.User}</td>
 						</tr>
 						<tr>
 							<th>Course</th>

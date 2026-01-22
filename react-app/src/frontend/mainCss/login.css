@@ -117,7 +117,10 @@ body {
 .feedback-icon {
 	font-size: 18px;
 }
-
+/* links */
+.links{
+	color: #b7e4cc;
+}
 /* subtle animation */
 @keyframes slideFade {
 	from {

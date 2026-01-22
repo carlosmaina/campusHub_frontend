@@ -5,18 +5,20 @@ import choice from "./DATA/data.js";
 function CampusHubAssistantChat({ stack, reset }) {
 	const [user, setUser] = useState("");
 	const cont = useRef(null);
-
+	let [user_here, reset_user_here] = useState(
+		() => JSON.parse(localStorage.getItem("user")) || []
+	);
 	// unified message list
 	const [messages, setMessages] = useState(() => {
 		const saved = sessionStorage.getItem("messages");
 		return saved
 			? JSON.parse(saved)
 			: [
-					{
-						sender: "bot",
-						text: "Hey! I can help you navigate through the platform?",
-					},
-			  ];
+				{
+					sender: "bot",
+					text: `Hey ${user_here.user} ! I can help you navigate through the platform?"`,
+				},
+			];
 	});
 	useEffect(() => {
 		sessionStorage.setItem("messages", JSON.stringify(messages));
@@ -71,9 +73,8 @@ function CampusHubAssistantChat({ stack, reset }) {
 					{messages.map((msg, index) => (
 						<div
 							key={index}
-							className={`${styles.message} ${
-								msg.sender === "bot" ? styles.ai : styles.user
-							}`}
+							className={`${styles.message} ${msg.sender === "bot" ? styles.ai : styles.user
+								}`}
 						>
 							{msg.text}
 						</div>

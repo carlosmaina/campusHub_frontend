@@ -1,0 +1,23 @@
+### checking login functionality
+POST http://localhost:8000/Login
+Content-Type: application/json
+
+{
+    "data":{
+    "email":"carlos@gmail.com",
+    "password":"123456789"
+}
+}
+
+### checking the functionality of sign up
+POST http://localhost:8000/sign
+
+Content-Type: application/json
+
+{
+    "data":{
+    "user":"carlos",
+    "email":"example@gmail.com",
+    "password":"123"
+}
+}

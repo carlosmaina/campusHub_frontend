@@ -10,6 +10,7 @@ import StudentDashboard from "./mainApp/progressTracker.jsx";
 
 import Login from "./mainApp/login.jsx";
 import Signup from "./mainApp/signUp.jsx";
+import ErrorPage from "./mainApp/erropage.jsx";
 
 /* Layout that includes TopBar */
 function AppLayout({ children }) {
@@ -55,6 +56,7 @@ function App() {
 						</AppLayout>
 					}
 				/>
+
 				<Route
 					path="videos"
 					element={
@@ -80,6 +82,7 @@ function App() {
 						</AppLayout>
 					}
 				/>
+				<Route path="*" element={<ErrorPage />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);

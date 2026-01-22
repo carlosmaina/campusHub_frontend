@@ -1,7 +1,9 @@
 @import url(../animations_themes/animation.css);
+
 :root {
 	--radius: 30px;
 }
+
 .all-set {
 	display: flex;
 	justify-content: center;
@@ -12,30 +14,25 @@
 	height: 300px;
 	background-color: #fff;
 }
+
 .all-set p {
 	font-weight: 1000;
 }
+
 .rotater {
-	gap: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	animation: rotate 1s linear infinite;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border-bottom: 4px solid transparent;
+	border-left: 4px solid transparent;
+	border-right: 4px solid #00d1ff;
+	border-top: 4px solid #00d1ff;
 }
+
 .dots {
 	width: var(--radius);
 	height: var(--radius);
 	border-radius: 50%;
 	background-color: black;
-}
-.first {
-	background-color: #0b132b;
-	animation: spin 1.8s linear infinite;
-}
-.second {
-	background-color: #00d1ff;
-	animation: spin 1.6s linear infinite;
-}
-.third {
-	background-color: #000;
-	animation: spin 1.7s linear infinite;
 }

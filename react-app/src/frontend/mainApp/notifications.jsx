@@ -44,7 +44,7 @@ function Notifications() {
       }
 
       const response = await fetch(
-        `https://campushub-mq9h.onrender.com/notifications?userId=${user.userId}`,
+        `https://campushub-hwty.onrender.com/notifications?userId=${user.userId}`,
         {
           method: "GET",
           headers: {
@@ -114,7 +114,7 @@ function Notifications() {
       }
 
       const response = await fetch(
-        `https://campushub-mq9h.onrender.com/notification/${notificationId}?userId=${user.userId}`,
+        `https://campushub-hwty.onrender.com/notification/${notificationId}?userId=${user.userId}`,
         {
           method: "DELETE",
           headers: {

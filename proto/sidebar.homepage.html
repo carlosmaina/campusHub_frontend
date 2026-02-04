@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusHub - AI Learning Platform</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --primary-blue: #2563eb;
+        --primary-green: #10b981;
+        --primary-purple: #8b5cf6;
+        --primary-amber: #f59e0b;
+        --primary-red: #ef4444;
+        --dark-bg: #0f172a;
+        --card-bg: #1e293b;
+        --sidebar-bg: #1e293b;
+        --text-light: #f8fafc;
+        --text-gray: #cbd5e1;
+        --border-color: #334155;
+        --engineering-blue: #3b82f6;
+        --arts-gold: #f59e0b;
+        --sciences-green: #10b981;
+      }
+
+      body {
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Top Navigation Bar */
+      .top-nav {
+        background-color: var(--card-bg);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: linear-gradient(
+          90deg,
+          var(--primary-blue),
+          var(--primary-purple)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .logo-icon {
+        color: var(--primary-blue);
+      }
+
+      .search-bar {
+        flex-grow: 1;
+        max-width: 600px;
+        margin: 0 2rem;
+        position: relative;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 0.8rem 1rem 0.8rem 3rem;
+        border-radius: 2rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+        font-size: 1rem;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-gray);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .notification-btn,
+      .user-profile {
+        position: relative;
+        cursor: pointer;
+      }
+
+      .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: var(--primary-red);
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: bold;
+      }
+
+      .ai-assistant-btn {
+        background: linear-gradient(
+          90deg,
+          var(--primary-blue),
+          var(--primary-purple)
+        );
+        color: white;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.6rem 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        font-weight: 600;
+        transition: transform 0.2s;
+      }
+
+      .ai-assistant-btn:hover {
+        transform: scale(1.05);
+      }
+
+      .ai-pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        }
+      }
+
+      /* Main Layout */
+      .main-container {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      /* Sidebar Navigation */
+      .sidebar {
+        width: 250px;
+        background-color: var(--sidebar-bg);
+        border-right: 1px solid var(--border-color);
+        padding: 1.5rem 1rem;
+        overflow-y: auto;
+        flex-shrink: 0;
+      }
+
+      .sidebar-section {
+        margin-bottom: 2rem;
+      }
+
+      .sidebar-title {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        color: var(--text-gray);
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .sidebar-menu {
+        list-style: none;
+      }
+
+      .sidebar-menu li {
+        margin-bottom: 0.5rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.2s;
+      }
+
+      .sidebar-menu li:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .sidebar-menu a {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        color: var(--text-light);
+        text-decoration: none;
+        border-radius: 0.5rem;
+      }
+
+      .sidebar-menu a.active {
+        background-color: rgba(37, 99, 235, 0.2);
+        border-left: 3px solid var(--primary-blue);
+      }
+
+      .course-progress {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+      }
+
+      .progress-ring {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.8rem;
+      }
+
+      .engineering {
+        background-color: rgba(59, 130, 246, 0.2);
+        color: var(--engineering-blue);
+      }
+      .arts {
+        background-color: rgba(245, 158, 11, 0.2);
+        color: var(--arts-gold);
+      }
+      .sciences {
+        background-color: rgba(16, 185, 129, 0.2);
+        color: var(--sciences-green);
+      }
+
+      .progress-info h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .progress-info p {
+        font-size: 0.8rem;
+        color: var(--text-gray);
+      }
+
+      /* Dashboard Content */
+      .dashboard-content {
+        flex: 1;
+        padding: 2rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .welcome-message h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .welcome-message p {
+        color: var(--text-gray);
+      }
+
+      .upload-btn {
+        background-color: var(--primary-green);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .upload-btn:hover {
+        background-color: #0da271;
+      }
+
+      /* Dashboard Panels */
+      .dashboard-panels {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .panel {
+        background-color: var(--card-bg);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .panel-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .panel-link {
+        color: var(--primary-blue);
+        text-decoration: none;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      /* Recent Activity Panel */
+      .activity-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .activity-item:last-child {
+        border-bottom: none;
+      }
+
+      .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .pdf {
+        background-color: rgba(239, 68, 68, 0.2);
+        color: var(--primary-red);
+      }
+      .video {
+        background-color: rgba(37, 99, 235, 0.2);
+        color: var(--primary-blue);
+      }
+      .notes {
+        background-color: rgba(16, 185, 129, 0.2);
+        color: var(--primary-green);
+      }
+
+      .activity-info h4 {
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .activity-info p {
+        font-size: 0.8rem;
+        color: var(--text-gray);
+      }
+
+      /* AI Recommendations Panel */
+      .recommendation-card {
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.1),
+          rgba(139, 92, 246, 0.1)
+        );
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid var(--primary-blue);
+      }
+
+      .recommendation-card:last-child {
+        margin-bottom: 0;
+      }
+
+      .recommendation-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.75rem;
+      }
+
+      .recommendation-header h4 {
+        font-size: 1rem;
+      }
+
+      .ai-badge {
+        background-color: var(--primary-purple);
+        color: white;
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+      }
+
+      .recommendation-summary {
+        font-size: 0.9rem;
+        color: var(--text-gray);
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+
+      .recommendation-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .recommendation-course {
+        font-size: 0.8rem;
+        color: var(--primary-blue);
+        background-color: rgba(37, 99, 235, 0.1);
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+      }
+
+      .view-btn {
+        background-color: transparent;
+        border: 1px solid var(--primary-blue);
+        color: var(--primary-blue);
+        padding: 0.4rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .view-btn:hover {
+        background-color: rgba(37, 99, 235, 0.1);
+      }
+
+      /* Quick Actions Panel */
+      .quick-actions-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .action-btn {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .action-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-3px);
+      }
+
+      .action-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .action-1 {
+        background-color: rgba(37, 99, 235, 0.2);
+        color: var(--primary-blue);
+      }
+      .action-2 {
+        background-color: rgba(16, 185, 129, 0.2);
+        color: var(--primary-green);
+      }
+      .action-3 {
+        background-color: rgba(245, 158, 11, 0.2);
+        color: var(--primary-amber);
+      }
+      .action-4 {
+        background-color: rgba(139, 92, 246, 0.2);
+        color: var(--primary-purple);
+      }
+
+      .action-btn p {
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      /* Course Progress Section */
+      .courses-section {
+        margin-top: 1rem;
+      }
+
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .course-card {
+        background-color: var(--card-bg);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .course-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .course-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .course-code {
+        font-size: 0.9rem;
+        color: var(--text-gray);
+      }
+
+      .course-progress-bar {
+        height: 8px;
+        background-color: var(--border-color);
+        border-radius: 4px;
+        margin: 1rem 0;
+        overflow: hidden;
+      }
+
+      .course-progress-fill {
+        height: 100%;
+        border-radius: 4px;
+      }
+
+      .engineering-fill {
+        background-color: var(--engineering-blue);
+        width: 75%;
+      }
+      .arts-fill {
+        background-color: var(--arts-gold);
+        width: 60%;
+      }
+      .sciences-fill {
+        background-color: var(--sciences-green);
+        width: 85%;
+      }
+
+      .course-stats {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: var(--text-gray);
+      }
+
+      /* AI Assistant Chat Widget */
+      .ai-chat-widget {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 350px;
+        background-color: var(--card-bg);
+        border-radius: 1rem;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        display: none;
+        z-index: 1000;
+      }
+
+      .ai-chat-header {
+        background: linear-gradient(
+          90deg,
+          var(--primary-blue),
+          var(--primary-purple)
+        );
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .ai-chat-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+      }
+
+      .close-chat {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      .ai-chat-body {
+        padding: 1rem;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .ai-message {
+        background-color: rgba(37, 99, 235, 0.1);
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .ai-chat-input {
+        padding: 1rem;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .ai-chat-input input {
+        flex: 1;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+      }
+
+      .ai-chat-input button {
+        background-color: var(--primary-blue);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0 1rem;
+        cursor: pointer;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        .dashboard-panels {
+          grid-template-columns: 1fr;
+        }
+
+        .courses-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 70px;
+          padding: 1rem 0.5rem;
+        }
+
+        .sidebar-menu span,
+        .progress-info,
+        .sidebar-title span:last-child {
+          display: none;
+        }
+
+        .sidebar-menu a {
+          justify-content: center;
+          padding: 0.75rem 0.5rem;
+        }
+
+        .search-bar {
+          margin: 0 1rem;
+        }
+
+        .ai-assistant-btn span {
+          display: none;
+        }
+
+        .ai-chat-widget {
+          width: 300px;
+          right: 1rem;
+          bottom: 1rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .top-nav {
+          padding: 1rem;
+        }
+
+        .logo span {
+          display: none;
+        }
+
+        .dashboard-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .ai-chat-widget {
+          width: calc(100% - 2rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+      <div class="logo-section">
+        <i class="fas fa-graduation-cap logo-icon"></i>
+        <div class="logo">CampusHub</div>
+      </div>
+
+      <div class="search-bar">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" placeholder="Ask AI or search for resources..." />
+      </div>
+
+      <div class="nav-actions">
+        <div class="notification-btn">
+          <i class="far fa-bell fa-lg"></i>
+          <div class="notification-badge">3</div>
+        </div>
+
+        <div class="user-profile">
+          <i class="far fa-user-circle fa-lg"></i>
+        </div>
+
+        <button class="ai-assistant-btn ai-pulse" id="openAiChat">
+          <i class="fas fa-robot"></i>
+          <span>AI Assistant</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">
+            <span>Navigation</span>
+            <i class="fas fa-compress-alt"></i>
+          </div>
+          <ul class="sidebar-menu">
+            <li>
+              <a href="#" class="active"
+                ><i class="fas fa-home"></i> <span>Dashboard</span></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-book-open"></i> <span>My Courses</span></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-file-pdf"></i> <span>PDF Library</span></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-video"></i> <span>Lecture Videos</span></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-sticky-note"></i> <span>My Notes</span></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-users"></i> <span>Study Groups</span></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">
+            <span>Academic Progress</span>
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="course-progress">
+            <div class="progress-ring engineering">75%</div>
+            <div class="progress-info">
+              <h4>Engineering</h4>
+              <p>3 courses in progress</p>
+            </div>
+          </div>
+          <div class="course-progress">
+            <div class="progress-ring arts">60%</div>
+            <div class="progress-info">
+              <h4>Arts & Humanities</h4>
+              <p>2 courses completed</p>
+            </div>
+          </div>
+          <div class="course-progress">
+            <div class="progress-ring sciences">85%</div>
+            <div class="progress-info">
+              <h4>Sciences</h4>
+              <p>4 courses in progress</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">
+            <span>Upcoming Deadlines</span>
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <ul class="sidebar-menu">
+            <li>
+              <a href="#"
+                ><i class="fas fa-file-signature"></i>
+                <span>Calculus Assignment</span>
+                <small style="color: var(--primary-red); margin-left: auto"
+                  >2 days</small
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-flask"></i> <span>Chemistry Lab Report</span>
+                <small style="color: var(--primary-amber); margin-left: auto"
+                  >5 days</small
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-book"></i> <span>Literature Essay</span>
+                <small style="color: var(--primary-green); margin-left: auto"
+                  >1 week</small
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Dashboard Content -->
+      <main class="dashboard-content">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+          <div class="welcome-message">
+            <h1>Welcome back, Alex!</h1>
+            <p>Here's your personalized learning dashboard for today.</p>
+          </div>
+          <button class="upload-btn">
+            <i class="fas fa-cloud-upload-alt"></i>
+            Upload Resource
+          </button>
+        </div>
+
+        <!-- Dashboard Panels -->
+        <div class="dashboard-panels">
+          <!-- Recent Activity Panel -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Recent Activity</h3>
+              <a href="#" class="panel-link"
+                >View All <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-icon pdf">
+                  <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="activity-info">
+                  <h4>Quantum Mechanics Lecture Notes</h4>
+                  <p>Physics 301 • Viewed 2 hours ago</p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon video">
+                  <i class="fas fa-video"></i>
+                </div>
+                <div class="activity-info">
+                  <h4>Organic Chemistry Lab Demo</h4>
+                  <p>Chemistry 205 • Watched yesterday</p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon notes">
+                  <i class="fas fa-sticky-note"></i>
+                </div>
+                <div class="activity-info">
+                  <h4>Calculus III Problem Set</h4>
+                  <p>Mathematics 303 • Uploaded 2 days ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Recommendations Panel -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">AI Recommendations</h3>
+              <a href="#" class="panel-link"
+                >More <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="recommendation-list">
+              <div class="recommendation-card">
+                <div class="recommendation-header">
+                  <h4>Upcoming Exam Prep</h4>
+                  <span class="ai-badge">AI Suggested</span>
+                </div>
+                <p class="recommendation-summary">
+                  Based on your study patterns, I've identified key topics for
+                  your Calculus final. Focus on integration techniques and
+                  series convergence.
+                </p>
+                <div class="recommendation-actions">
+                  <span class="recommendation-course">MATH 303</span>
+                  <button class="view-btn">Study Plan</button>
+                </div>
+              </div>
+              <div class="recommendation-card">
+                <div class="recommendation-header">
+                  <h4>Related Video Lecture</h4>
+                  <span class="ai-badge">AI Matched</span>
+                </div>
+                <p class="recommendation-summary">
+                  This 45-minute video covers quantum entanglement concepts that
+                  complement the PDF you read yesterday.
+                </p>
+                <div class="recommendation-actions">
+                  <span class="recommendation-course">PHYS 401</span>
+                  <button class="view-btn">Watch Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions Panel -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Quick Actions</h3>
+            </div>
+            <div class="quick-actions-grid">
+              <div class="action-btn">
+                <div class="action-icon action-1">
+                  <i class="fas fa-plus"></i>
+                </div>
+                <p>Create Study Session</p>
+              </div>
+              <div class="action-btn">
+                <div class="action-icon action-2">
+                  <i class="fas fa-search"></i>
+                </div>
+                <p>Find Study Group</p>
+              </div>
+              <div class="action-btn">
+                <div class="action-icon action-3">
+                  <i class="fas fa-download"></i>
+                </div>
+                <p>Download Materials</p>
+              </div>
+              <div class="action-btn">
+                <div class="action-icon action-4">
+                  <i class="fas fa-chart-bar"></i>
+                </div>
+                <p>View Analytics</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Progress Section -->
+        <div class="courses-section">
+          <div class="panel-header">
+            <h3 class="panel-title">My Courses Progress</h3>
+            <a href="#" class="panel-link"
+              >View All Courses <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="courses-grid">
+            <!-- Course Card 1 -->
+            <div class="course-card">
+              <div class="course-header">
+                <div class="course-title">
+                  <div class="progress-ring engineering">
+                    <i class="fas fa-calculator"></i>
+                  </div>
+                  <div>
+                    <h4>Calculus III</h4>
+                    <p class="course-code">MATH 303 • Engineering</p>
+                  </div>
+                </div>
+                <span class="ai-badge">AI Tutor Available</span>
+              </div>
+              <p>
+                Multivariable calculus, vector functions, partial derivatives
+              </p>
+              <div class="course-progress-bar">
+                <div class="course-progress-fill engineering-fill"></div>
+              </div>
+              <div class="course-stats">
+                <span><i class="fas fa-file-pdf"></i> 12 PDFs</span>
+                <span><i class="fas fa-video"></i> 8 Videos</span>
+                <span>75% Complete</span>
+              </div>
+            </div>
+
+            <!-- Course Card 2 -->
+            <div class="course-card">
+              <div class="course-header">
+                <div class="course-title">
+                  <div class="progress-ring arts">
+                    <i class="fas fa-book"></i>
+                  </div>
+                  <div>
+                    <h4>Modern Literature</h4>
+                    <p class="course-code">ENGL 205 • Arts</p>
+                  </div>
+                </div>
+              </div>
+              <p>20th century literature, critical analysis, essay writing</p>
+              <div class="course-progress-bar">
+                <div class="course-progress-fill arts-fill"></div>
+              </div>
+              <div class="course-stats">
+                <span><i class="fas fa-file-pdf"></i> 8 PDFs</span>
+                <span><i class="fas fa-video"></i> 5 Videos</span>
+                <span>60% Complete</span>
+              </div>
+            </div>
+
+            <!-- Course Card 3 -->
+            <div class="course-card">
+              <div class="course-header">
+                <div class="course-title">
+                  <div class="progress-ring sciences">
+                    <i class="fas fa-flask"></i>
+                  </div>
+                  <div>
+                    <h4>Organic Chemistry</h4>
+                    <p class="course-code">CHEM 301 • Sciences</p>
+                  </div>
+                </div>
+                <span
+                  class="ai-badge"
+                  style="background-color: var(--primary-amber)"
+                  >Exam Soon</span
+                >
+              </div>
+              <p>Structure, properties, and reactions of organic compounds</p>
+              <div class="course-progress-bar">
+                <div class="course-progress-fill sciences-fill"></div>
+              </div>
+              <div class="course-stats">
+                <span><i class="fas fa-file-pdf"></i> 15 PDFs</span>
+                <span><i class="fas fa-video"></i> 10 Videos</span>
+                <span>85% Complete</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- AI Assistant Chat Widget -->
+    <div class="ai-chat-widget" id="aiChatWidget">
+      <div class="ai-chat-header">
+        <div class="ai-chat-title">
+          <i class="fas fa-robot"></i>
+          CampusHub AI Assistant
+        </div>
+        <button class="close-chat" id="closeAiChat">×</button>
+      </div>
+      <div class="ai-chat-body">
+        <div class="ai-message">
+          Hello! I'm your AI learning assistant. I can help you find resources,
+          summarize content, create study plans, and answer questions about your
+          courses. How can I help you today?
+        </div>
+        <div class="ai-message">
+          I noticed you've been studying Calculus III. Would you like me to
+          create a focused study plan for your upcoming exam?
+        </div>
+      </div>
+      <div class="ai-chat-input">
+        <input
+          type="text"
+          placeholder="Ask me anything about your courses..."
+        />
+        <button><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+
+    <script>
+      // Toggle AI Chat Widget
+      document
+        .getElementById("openAiChat")
+        .addEventListener("click", function () {
+          document.getElementById("aiChatWidget").style.display = "block";
+        });
+
+      document
+        .getElementById("closeAiChat")
+        .addEventListener("click", function () {
+          document.getElementById("aiChatWidget").style.display = "none";
+        });
+
+      // Simulate notification click
+      document
+        .querySelector(".notification-btn")
+        .addEventListener("click", function () {
+          alert(
+            "You have 3 notifications:\n1. New material uploaded to Calculus III\n2. Study group meeting reminder\n3. AI-generated summary ready for Chemistry notes",
+          );
+        });
+
+      // Simulate upload button click
+      document
+        .querySelector(".upload-btn")
+        .addEventListener("click", function () {
+          alert(
+            "Drag and drop files here or click to browse. Supported formats: PDF, MP4, DOCX, PPTX. AI will help categorize and tag your uploads.",
+          );
+        });
+
+      // Simulate search functionality
+      const searchInput = document.querySelector(".search-bar input");
+      searchInput.addEventListener("focus", function () {
+        this.value = "Search by course, topic, or ask AI a question...";
+      });
+
+      searchInput.addEventListener("blur", function () {
+        if (this.value === "Search by course, topic, or ask AI a question...") {
+          this.value = "";
+        }
+      });
+
+      // Add hover effects to course cards
+      document.querySelectorAll(".course-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-5px)";
+          this.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.3)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0)";
+          this.style.boxShadow = "none";
+        });
+      });
+
+      // Simulate quick action buttons
+      document.querySelectorAll(".action-btn").forEach((btn, index) => {
+        btn.addEventListener("click", function () {
+          const actions = [
+            "Creating a focused study session with AI recommendations...",
+            "Finding study groups with students in your courses...",
+            "Preparing all course materials for download...",
+            "Opening your learning analytics dashboard...",
+          ];
+          alert(actions[index]);
+        });
+      });
+
+      // Simulate view buttons on recommendations
+      document.querySelectorAll(".view-btn").forEach((btn, index) => {
+        btn.addEventListener("click", function () {
+          const actions = [
+            "Opening your personalized Calculus III study plan...",
+            "Playing video lecture: 'Quantum Entanglement Explained'...",
+          ];
+          alert(actions[index]);
+        });
+      });
+    </script>
+  </body>
+</html>

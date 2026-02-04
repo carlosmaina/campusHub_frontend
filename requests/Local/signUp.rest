@@ -1,0 +1,9 @@
+POST http://localhost:8000/signUp
+
+Content-Type: application/json
+
+{
+    "username":"Carlos",
+    "email":"apexmechanics9@gmail.com",
+    "password":"najua"
+}

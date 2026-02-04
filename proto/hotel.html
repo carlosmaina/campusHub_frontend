@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Healthy Meal Order Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f0f8f5;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      button {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      /* Squash and stretch effect */
+      button:active {
+        transform: scale(0.9, 1.1);
+      }
+
+      .loading {
+        margin-top: 20px;
+        font-size: 20px;
+        display: none;
+        animation: pulse 1s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.3;
+        }
+      }
+
+      .confirmation {
+        margin-top: 20px;
+        font-size: 22px;
+        color: #2e7d32;
+        display: none;
+        animation: pop 0.6s ease forwards;
+      }
+
+      @keyframes pop {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        80% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button id="orderBtn">Order Healthy Meal</button>
+      <div id="loading" class="loading">Loading...</div>
+      <div id="confirmation" class="confirmation">✅ Order Confirmed!</div>
+    </div>
+
+    <script>
+      const orderBtn = document.getElementById("orderBtn");
+      const loading = document.getElementById("loading");
+      const confirmation = document.getElementById("confirmation");
+
+      orderBtn.addEventListener("click", () => {
+        // Hide confirmation if visible
+        confirmation.style.display = "none";
+
+        // Show loading
+        loading.style.display = "block";
+
+        // Simulate system process (3 seconds)
+        setTimeout(() => {
+          loading.style.display = "none";
+          confirmation.style.display = "block";
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>

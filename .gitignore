@@ -1,2 +1,5 @@
+# Ignore the local requests folder
 requests/
+
+# Ignore the backend folder 
 backend/

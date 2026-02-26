@@ -89,8 +89,7 @@ function UploadResourcesToThers() {
           credentials: "include",
         },
       );
-      console.log(await res.json());
-
+      
       if (res.ok) {
         setUploadStatus("success");
         setFile(null);

@@ -103,6 +103,7 @@ const OTPVerify = ({ email }) => {
           }, 3000);
         }
         if (result.success === false) {
+          console.log(result)
           setError({
             message: result.message || "Session Expired",
             status: result.success,

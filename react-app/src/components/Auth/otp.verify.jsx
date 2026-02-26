@@ -7,7 +7,7 @@ const OTPVerify = ({ email }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ message: "", status: true });
   const [showNotification, setShowNotification] = useState(false);
-  const [notificationType, setNotificationType] = useState(""); // success or error
+  const [notificationType, setNotificationType] = useState("error"); // success or error
   const [otpDigits, setOtpDigits] = useState(Array(4).fill(""));
 
   const navigate = useNavigate();
@@ -81,8 +81,9 @@ const OTPVerify = ({ email }) => {
   const onOtpSubmit = (data) => {
     if (isLoading) return;
     setIsLoading(true);
-    fetch("https://campushub-mq9h.onrender.com/verify-otp", {
+    fetch("https://campushub-mq9h.onrender.com/auth/verify-otp", {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email,
@@ -97,17 +98,26 @@ const OTPVerify = ({ email }) => {
             status: result.success,
           });
           setTimeout(() => {
-            navigate("/homepage");
+            navigate("/login");
+            document.title = "Home";
           }, 3000);
-        } else {
+        }
+        if (result.success === false) {
           setError({
-            message: result.message || "OTP verification failed",
+            message: result.message || "Session Expired",
             status: result.success,
           });
         }
       })
+      .catch((error) => {
+        console.log(error);
+        setError({
+          message:  "OTP verification failed",
+          status: false,
+        });
+      })
       .finally(() => {
-        setIsLoading(true);
+        setIsLoading(false);
       });
   };
 
@@ -127,10 +137,17 @@ const OTPVerify = ({ email }) => {
           <p className={styles["notification-subtitle"]}>
             {notificationType === "success"
               ? "Success"
-              : "Please check your details"}
+              : "Please enter your OTP"}
           </p>
         </div>
-        <button className={styles["notification-close"]}>×</button>
+        <button
+          className={styles["notification-close"]}
+          onClick={() => {
+            setShowNotification(false);
+          }}
+        >
+          ×
+        </button>
       </div>
 
       <form

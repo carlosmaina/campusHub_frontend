@@ -3,7 +3,7 @@ import "../components.css.styles/error.page.css";
 
 const ErrorPage = () => {
   // creating the title
-  document.title = "Error Page";
+  // document.title = "Error page";
   const [particles, setParticles] = useState([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   // Generate floating particles
@@ -45,6 +45,7 @@ const ErrorPage = () => {
     window.location.href = "/";
   };
   function changePage() {}
+
   return (
     <div className="error-page">
       {/* Animated Background */}

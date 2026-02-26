@@ -40,7 +40,12 @@ export function SideBar({ collapsed, setCollapsed }) {
             </Link>
           </li>
           <li>
-            <Link to="/courses">
+            <Link
+              to="/myCollection"
+              className={
+                location.pathname === "/myCollection" ? styles.active : ""
+              }
+            >
               <i className="fas fa-book-open"></i>
               <span>My Collection</span>
             </Link>

@@ -39,7 +39,23 @@ const Signup = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
+  useEffect(() => {
+    (async () => {
+      // checking if user is logged in
+      let Response = await fetch("https://campushub-mq9h.onrender.com/auth/check/logged", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user: "user" }),
+        credentials: "include",
+      });
+      if (Response.ok) {
+        navigate("/homepage");
+        document.title = "CampusHub";
+        return;
+      }
+      //
+    })();
+  }, []);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -96,8 +112,9 @@ const Signup = () => {
     if (buttonRef.current) {
       buttonRef.current.style.width = `${buttonRef.current.offsetWidth}px`;
     }
-    fetch("https://campushub-mq9h.onrender.com/signUp", {
+    fetch("https://campushub-mq9h.onrender.com/auth/signUp", {
       method: "POST",
+      credentials: "include",
       headers: {
         "content-type": "application/json",
       },
@@ -136,7 +153,7 @@ const Signup = () => {
           }
         }, 500);
       }
-      //   alert("Account created successfully 🎉");
+      //   alert("Account created successfully );
     }, 1500);
   };
 

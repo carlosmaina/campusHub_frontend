@@ -1,7 +1,16 @@
+/* initializing the page */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 /* ===== Sidebar Base ===== */
 :root {
   --primary-color: #1e293b;
   --secondary-color: #2563eb;
+}
+body {
+  background-color: var(--primary-color);
 }
 .sidebar {
   position: fixed;
@@ -42,7 +51,7 @@
 }
 
 .sidebar::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
@@ -51,7 +60,7 @@
 }
 
 .sidebar::-webkit-scrollbar-track {
-  background: #eee;
+  background: #fff;
 }
 
 /* ===== Sections ===== */
@@ -177,12 +186,12 @@
   color: #10b981;
 }
 /* dealing with how the pdf links auto hide */
-.nestedMenu  {
+.nestedMenu {
   display: none;
   padding: 10px 0 0 40px;
   list-style: none;
 }
-.activeLink  {
+.activeLink {
   display: block;
 }
 @media (max-width: 640px) {

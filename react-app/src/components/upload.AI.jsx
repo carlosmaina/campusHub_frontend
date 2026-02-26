@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../components.css.styles/upload.module.css";
 import { PreviewPDF } from "./pdf.preview.jsx";
 import Loader from "./loaders/loader.jsx";
 import { SummaryView } from "./summary.view.jsx";
 
 function UploadResources() {
+  let location = useNavigate();
   // setting the file name
   const [file, setFile] = useState(null);
   // setting the pdf url
@@ -26,18 +28,24 @@ function UploadResources() {
 
   function setPDFUrl() {
     if (file) {
-      if (PDFURL) URL.revokeObjectURL(file);
-      let url = URL.createObjectURL(file);
+      if (PDFURL) URL.revokeObjectURL(PDFURL); // revoke old URL string
+      const url = URL.createObjectURL(file);
       resetURL(url);
     }
   }
+
   // error and success clearing
   function clearInfo() {
     setTimeout(() => setUploadStatus(""), 5000);
   }
   function clearFile() {
-    setTimeout(() => setFile(null), 10000);
+    setFile(null);
+    resetURL("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""; // reset the input element
+    }
   }
+
   // Complete formatting function
   function formatAllElements(text) {
     if (!text) return "";
@@ -190,34 +198,65 @@ function UploadResources() {
   const handleUpload = async () => {
     if (!file) {
       setUploadStatus("error");
+      clearInfo();
       return;
     }
+
     setLoader(true);
+
     const formData = new FormData();
     formData.append("file", file);
 
-    await fetch("https://campushub-mq9h.onrender.com/api/pdf", {
-      method: "POST",
-      body: formData,
-    })
-      .then((data) => data.json())
-      .then((res) => {
-        setUploadStatus("success");
-        resetSummaryState(true);
-        setClose(false);
-        let AIWords = formatAllElements(res.data2);
-        resetAISummary(AIWords);
-        clearInfo();
-        // clearFile();
-      })
-      .catch((err) => {
-        setUploadStatus("error");
-        clearInfo();
-      })
-      .finally(() => {
-        setLoader(false);
+    async function uploadRequest() {
+      return fetch("https://campushub-mq9h.onrender.com/api/resource/pdf", {
+        method: "POST",
+        credentials: "include",
+        body: formData,
       });
+    }
+
+    try {
+      let response = await uploadRequest();
+
+      if (response.status === 401) {
+        const refresh = await fetch(
+          "https://campushub-mq9h.onrender.com/auth/verify/refresh",
+          {
+            method: "POST",
+            credentials: "include",
+          },
+        );
+
+        // if (!refresh.ok) {
+        //   location("/login");
+        //   return;
+        // }
+
+        response = await uploadRequest(); // retry once
+      }
+
+      if (!response.ok) {
+        throw new Error("Upload failed");
+      }
+
+      const res = await response.json();
+
+      setUploadStatus("success");
+      resetSummaryState(true);
+      setClose(false);
+
+      let AIWords = formatAllElements(res.data2);
+      resetAISummary(AIWords);
+
+      clearInfo();
+    } catch (error) {
+      setUploadStatus("error");
+      clearInfo();
+    } finally {
+      setLoader(false);
+    }
   };
+
   return (
     <div className={styles.uploadContainer}>
       <div>
@@ -273,7 +312,7 @@ function UploadResources() {
               <button className={styles.uploadBtn} onClick={setPDFUrl}>
                 preview
               </button>
-              <button className={styles.clearBtn} onClick={() => setFile(null)}>
+              <button className={styles.clearBtn} onClick={clearFile}>
                 Clear
               </button>
             </div>

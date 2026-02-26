@@ -81,10 +81,15 @@ function UploadResourcesToThers() {
     formData.append("unitCode", metadata.unitCode);
 
     try {
-      const res = await fetch("http://localhost:8000/api/pdf/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        "https://campushub-mq9h.onrender.com/api/resources/upload/users/data/pdf",
+        {
+          method: "POST",
+          body: formData,
+          credentials: "include",
+        },
+      );
+      console.log(await res.json());
 
       if (res.ok) {
         setUploadStatus("success");
@@ -94,10 +99,12 @@ function UploadResourcesToThers() {
         clearError();
       } else {
         setUploadStatus("error");
+
         clearError();
       }
     } catch (err) {
       setUploadStatus("error");
+      console.log(err);
     } finally {
       setLoader(false);
     }

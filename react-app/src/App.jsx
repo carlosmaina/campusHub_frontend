@@ -9,12 +9,23 @@ import { PDFLibrary } from "./components/simple.search.jsx";
 import { DeepPDFSearch } from "./components/deep.search.jsx";
 import { UploadResources } from "./components/upload.AI.jsx";
 import { UploadResourcesToThers } from "./components/upload.resource.others.jsx";
+import { MyCollection } from "./components/MyCollection.jsx";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          {/* my collection route */}
+          <Route
+            path="/myCollection"
+            element={
+              <Dashboard>
+                <MyCollection />
+              </Dashboard>
+            }
+          />
+          {/* pdf */}
           <Route
             path="/deepsearch"
             element={
